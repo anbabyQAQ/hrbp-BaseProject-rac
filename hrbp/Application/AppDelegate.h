@@ -6,11 +6,15 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <RealReachability.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+/**
+ *  网络状态
+ */
+@property (assign , nonatomic , readonly) ReachabilityStatus  NetWorkStatus;
 
 @end
 

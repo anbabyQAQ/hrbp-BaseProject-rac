@@ -6,8 +6,15 @@
  */
 
 #import "AppDelegate.h"
+#import "HTTabBarControllerConfig.h"
+#import "HTServerConfig.h"
+#import <IQKeyboardManager.h>
+#import "HTLBSManager.h"
+#import "HTServerConfig.h"
 
 @interface AppDelegate ()
+
+@property (assign , nonatomic , readwrite) ReachabilityStatus  NetWorkStatus;
 
 @end
 
@@ -16,9 +23,71 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    
+    // 设置跟控制器
+    [self setRootController];
+    // 设置服务器环境 01:生产环境  00:测试环境
+    [HTServerConfig setHTConfigEnv:@"01"];
+    // 配置IQKeyboardManager
+    [self configurationIQKeyboard];
+    // 获取定位信息
+    /*
+    self.lbs = [HTLBSManager startGetLBSWithDelegate:self];
+     */
+    // 配置网络状态
+    [self configurationNetWorkStatus];
+    
+    
     return YES;
 }
 
+#pragma mark -
+#pragma mark - Private Methods
+//// 配置Scheme和Host
+//- (void)configurationAppSchemeAndHost
+//{
+//    [VKURLAction setupScheme:@"HeartTrip" andHost:@"NativeOpenUrl"];
+//    [VKURLAction enableSignCheck:@"BinBear"];
+//}
+// 设置根控制器
+- (void)setRootController
+{
+    self.window = [[UIWindow alloc]init];
+    self.window.frame = [UIScreen mainScreen].bounds;
+    
+    /********* tabbar普通样式  ***********/
+    
+    HTTabBarControllerConfig *tabBarControllerConfig = [[HTTabBarControllerConfig alloc] init];
+    [self.window setRootViewController:tabBarControllerConfig.tabBarController];
+    
+    [self.window makeKeyAndVisible];
+}
+
+// 配置IQKeyboardManager
+- (void)configurationIQKeyboard
+{
+    IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.shouldResignOnTouchOutside = YES;
+    manager.shouldToolbarUsesTextFieldTintColor = YES;
+    manager.enableAutoToolbar = NO;
+}
+
+- (void)configurationNetWorkStatus
+{
+    
+    [GLobalRealReachability startNotifier];
+    
+    RAC(self, NetWorkStatus) = [[[[[[NSNotificationCenter defaultCenter]
+                                    rac_addObserverForName:kRealReachabilityChangedNotification object:nil]
+                                   map:^(NSNotification *notification) {
+                                       return @([notification.object currentReachabilityStatus]);
+                                   }]
+                                  takeUntil:self.rac_willDeallocSignal]
+                                 startWith:@([GLobalRealReachability currentReachabilityStatus])]
+                                distinctUntilChanged];
+    
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

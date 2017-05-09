@@ -6,31 +6,133 @@
  */
 
 #import "BaseWebViewController.h"
+#import "FTDIntegrationWebView.h"
+#import "HTWebViewModel.h"
+#import "UIViewController+HTHideBottomLine.h"
 
-@interface BaseWebViewController ()
+
+@interface BaseWebViewController ()<FTDIntegrationWebViewDelegate>
+/**
+ *  viewModel
+ */
+@property (strong, nonatomic, readonly) HTWebViewModel *viewModel;
+/**
+ *  webview
+ */
+@property (strong, nonatomic) FTDIntegrationWebView *webView;
 
 @end
 
 @implementation BaseWebViewController
+@dynamic viewModel;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)bindViewModel
+{
+    [super bindViewModel];
+    
+    [self.webView loadURLString:self.viewModel.requestURL];
+    
+    // 开始加载
+    @weakify(self);
+    [[self
+      rac_signalForSelector:@selector(FTD_WebViewDidStartLoad:)
+      fromProtocol:@protocol(FTDIntegrationWebViewDelegate)]
+    	subscribeNext:^(RACTuple *tuple) {
+            @strongify(self)
+            if (tuple.first == self.webView){
+                
+                dispatch_main_async_safe(^{
+                    [HTShowMessageView showStatusWithMessage:@"Loading..."];
+                });
+            }
+        }];
+    // 加载完成
+    [[self
+      rac_signalForSelector:@selector(FTD_WebView:didFinishLoadingURL:)
+      fromProtocol:@protocol(FTDIntegrationWebViewDelegate)]
+    	subscribeNext:^(RACTuple *tuple) {
+            @strongify(self)
+            if (tuple.first == self.webView){
+                
+                dispatch_main_async_safe(^{
+                    [HTShowMessageView dismissSuccessView:@"Success"];
+                    if (self.viewModel.webType == kWebHomeFullviewDetailType) {
+                        
+                        NSString *jsMethod = @"document.getElementById(\"download\").remove();document.querySelector(\"header.has-banner\").style.marginTop = 0;";
+                        [self.webView FTD_stringByEvaluatingJavaScriptFromString:jsMethod];
+                    }
+                    
+                });
+            }
+        }];
+    // 加载失败
+    [[self
+      rac_signalForSelector:@selector(FTD_WebView:didFailToLoadURL:error:)
+      fromProtocol:@protocol(FTDIntegrationWebViewDelegate)]
+    	subscribeNext:^(RACTuple *tuple) {
+            @strongify(self)
+            if (tuple.first == self.webView){
+                
+                dispatch_main_async_safe(^{
+                    [HTShowMessageView dismissErrorView:@"Error"];
+                });
+            }
+        }];
+    
+    // 标题
+    if ([self.viewModel.title isNotBlank]) {
+        RAC(self.navigationItem,title) = RACObserve(self.viewModel, title);
+    }else{
+        [[self
+          rac_signalForSelector:@selector(FTD_WebView:title:)
+          fromProtocol:@protocol(FTDIntegrationWebViewDelegate)]
+         subscribeNext:^(RACTuple *tuple) {
+             @strongify(self)
+             
+             dispatch_main_async_safe(^{
+                 self.navigationItem.title = tuple.second;
+             });
+             
+         }];
+    }
+    
+    self.webView.delegate = self;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.right.top.bottom.equalTo(self.view);
+    }];
 }
-*/
+- (void)updateViewConstraints
+{
+    [self.webView mas_updateConstraints:^(MASConstraintMaker *make) {
+        
+        if (self.viewModel.navBarStyleType == kNavBarStyleHidden) {
+            make.left.right.bottom.equalTo(self.view);
+            make.top.equalTo(self.view).offset(-64);
+        }
+    }];
+    
+    [super updateViewConstraints];
+}
+#pragma mark - getter
+- (FTDIntegrationWebView *)webView
+{
+    return HT_LAZY(_webView, ({
+        
+        FTDIntegrationWebView *view = [FTDIntegrationWebView new];
+        [self.view addSubview:view];
+        view;
+    }));
+}
 
 @end

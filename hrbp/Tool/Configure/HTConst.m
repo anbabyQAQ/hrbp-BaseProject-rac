@@ -12,8 +12,8 @@
 
 // 首页banner数据key
 NSString *const  BannerDatakey = @"BannerDatakey";
-// 首页热门游记数据key
-NSString *const  TravelDatakey = @"TravelDatakey";
+// 首页4项功能数据key
+NSString *const  BusinessActionDatakey = @"BusinessActionDatakey";
 // 发现视频数据key
 NSString *const  FindVideoDatakey = @"FindVideoDatakey";
 // 发现feed数据key

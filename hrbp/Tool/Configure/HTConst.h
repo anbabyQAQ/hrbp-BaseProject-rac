@@ -13,8 +13,8 @@
 
 // 首页banner数据key
 FOUNDATION_EXTERN NSString *const BannerDatakey;
-// 首页热门游记数据key
-FOUNDATION_EXTERN NSString *const TravelDatakey;
+// 首页4项功能数据key
+FOUNDATION_EXTERN NSString *const BusinessActionDatakey;
 // 发现视频数据key
 FOUNDATION_EXTERN NSString *const FindVideoDatakey;
 // 发现feed数据key

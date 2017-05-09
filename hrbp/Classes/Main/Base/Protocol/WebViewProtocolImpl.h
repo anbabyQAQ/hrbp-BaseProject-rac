@@ -6,7 +6,8 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "HTViewModelProtocolImpl.h"
 
-@interface WebViewProtocolImpl : NSObject
+@interface WebViewProtocolImpl : NSObject<HTViewModelProtocolImpl>
 
 @end
