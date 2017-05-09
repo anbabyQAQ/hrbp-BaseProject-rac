@@ -17,6 +17,8 @@ static void *FTDIntegrationWebBrowserContext = &FTDIntegrationWebBrowserContext;
         unsigned int didStartLoad            :1;
         unsigned int didFinishLoad           :1;
         unsigned int didFailToLoad           :1;
+        unsigned int didReceiveScriptMessageToLoad           :1;
+
         
     } _delegateFlags; //将代理对象是否能响应相关协议方法缓存在结构体中
 }
@@ -28,6 +30,8 @@ static void *FTDIntegrationWebBrowserContext = &FTDIntegrationWebBrowserContext;
 
 @property (nonatomic, strong) WKWebView *wkWebView;
 @property (nonatomic, strong) UIWebView *uiWebView;
+
+@property (nonatomic, strong) WKWebViewConfiguration *wkWebViewConfig;
 
 @end
 
@@ -76,6 +80,59 @@ static void *FTDIntegrationWebBrowserContext = &FTDIntegrationWebBrowserContext;
         */
     }
     return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame WithConfiguration:(NSArray *)configuration{
+    self = [super initWithFrame:frame];
+    if (self) {
+        if(NSClassFromString(@"WKWebView")) {
+            WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
+            config.userContentController = [[WKUserContentController alloc] init];
+            if (configuration.count>0) {
+                for (NSString * scriptMessageName in configuration) {
+                    [config.userContentController addScriptMessageHandler:self name:scriptMessageName];
+                }
+            }
+            self.wkWebView = [[WKWebView alloc] initWithFrame:frame configuration:config];
+        } else {
+            self.uiWebView = [[UIWebView alloc] init];
+        }
+        
+        self.backgroundColor = [UIColor redColor];
+        
+        if(self.wkWebView) {
+            [self.wkWebView setFrame:frame];
+            [self.wkWebView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+            [self.wkWebView setNavigationDelegate:self];
+            [self.wkWebView setUIDelegate:self];
+            [self.wkWebView setMultipleTouchEnabled:YES];
+            [self.wkWebView setAutoresizesSubviews:YES];
+            [self.wkWebView.scrollView setAlwaysBounceVertical:YES];
+            [self addSubview:self.wkWebView];
+            [self.wkWebView addObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress)) options:0 context:FTDIntegrationWebBrowserContext];
+            [self.wkWebView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:NULL];
+        } else {
+            [self.uiWebView setFrame:frame];
+            [self.uiWebView setAutoresizingMask:UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+            [self.uiWebView setDelegate:self];
+            [self.uiWebView setMultipleTouchEnabled:YES];
+            [self.uiWebView setAutoresizesSubviews:YES];
+            [self.uiWebView setScalesPageToFit:YES];
+            [self.uiWebView.scrollView setAlwaysBounceVertical:YES];
+            [self addSubview:self.uiWebView];
+        }
+        /*
+         self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
+         [self.progressView setTrackTintColor:[UIColor colorWithWhite:1.0f alpha:0.0f]];
+         [self.progressView setFrame:self.bounds];
+         
+         //设置进度条颜色
+         [self setTintColor:[UIColor orangeColor]];
+         [self addSubview:self.progressView];
+         */
+    }
+    return self;
+
 }
 
 #pragma mark - Public Interface
@@ -153,6 +210,10 @@ static void *FTDIntegrationWebBrowserContext = &FTDIntegrationWebBrowserContext;
     _delegateFlags.didStartLoad = [delegate respondsToSelector:@selector(FTD_WebViewDidStartLoad:)];
     _delegateFlags.didFinishLoad = [delegate respondsToSelector:@selector(FTD_WebView:didFinishLoadingURL:)];
     _delegateFlags.didFailToLoad = [delegate respondsToSelector:@selector(FTD_WebView:didFailToLoadURL:error:)];
+    
+    _delegateFlags.didReceiveScriptMessageToLoad = [delegate respondsToSelector:@selector(FTD_WebView:userContentController:didReceiveScriptMessage:)];
+    
+    
 }
 - (void)FTD_stringByEvaluatingJavaScriptFromString:(NSString *)jsString
 {
@@ -320,6 +381,15 @@ static void *FTDIntegrationWebBrowserContext = &FTDIntegrationWebBrowserContext;
         }
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+- (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message{
+    if(message.webView == self.wkWebView) {
+        //back delegate
+        if (_delegateFlags.didReceiveScriptMessageToLoad) {
+            [self.delegate FTD_WebView:self userContentController:userContentController didReceiveScriptMessage:message];
+        }
     }
 }
 

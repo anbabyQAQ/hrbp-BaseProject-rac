@@ -34,10 +34,14 @@
  *  webview加载失败
  */
 - (void)FTD_WebView:(FTDIntegrationWebView *)webview didFailToLoadURL:(NSURL *)URL error:(NSError *)error;
+/**
+ *  webview OB-JS交互
+ */
+- (void)FTD_WebView:(FTDIntegrationWebView *)webview userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message;
 @end
 
 /********** 将webView与WKWebView集成 ***********/
-@interface FTDIntegrationWebView : UIView<WKNavigationDelegate, WKUIDelegate, UIWebViewDelegate>
+@interface FTDIntegrationWebView : UIView<WKNavigationDelegate, WKUIDelegate, UIWebViewDelegate,WKScriptMessageHandler>
 
 #pragma mark - Public Properties
 /**
@@ -63,7 +67,13 @@
 /**
  *  初始化方法
  */
-- (instancetype)initWithFrame:(CGRect)frame;
+- (instancetype)initWithFrame:(CGRect)frame ;
+
+#pragma mark - Initializers view
+/**
+ *  初始化方法 以及 OC-JS交互规则
+ */
+- (instancetype)initWithFrame:(CGRect)frame WithConfiguration:(NSArray *)configuration;
 
 #pragma mark - Public Interface
 /**

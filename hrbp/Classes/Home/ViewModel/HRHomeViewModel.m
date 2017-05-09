@@ -33,7 +33,7 @@
         
 //        HTViewModelServicesImpl *servicesImpl = [[HTViewModelServicesImpl alloc] initModelServiceImpl];
 
-        HTWebViewModel *viewModel = [[HTWebViewModel alloc] initWithServices:self.services params:@{RequestURLkey:requestURL,NavBarStyleTypekey:@(kNavBarStyleNomal)}];
+        HTWebViewModel *viewModel = [[HTWebViewModel alloc] initWithServices:self.services params:@{RequestURLkey:requestURL,NavBarStyleTypekey:@(kNavBarStyleNomal),WebViewTypekey:@(kWebHomeFullviewDetailType)}];
         
         [[HTMediatorAction sharedInstance] pushWebViewControllerWithViewModel:viewModel];
         

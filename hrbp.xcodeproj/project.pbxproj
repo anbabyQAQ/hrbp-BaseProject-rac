@@ -73,6 +73,7 @@
 		3C1BDC341EBB2C35003E712F /* UIWebView+BAKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1BDC081EBB2C35003E712F /* UIWebView+BAKit.m */; };
 		3C5A26EE1EC16B520081591A /* UserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A26ED1EC16B520081591A /* UserHeaderView.m */; };
 		3C5A26F11EC18D2B0081591A /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A26F01EC18D2B0081591A /* UserModel.m */; };
+		3C5A26F31EC1B7B90081591A /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C5A26F21EC1B7B90081591A /* index.html */; };
 		3C8074061EC00CAF00E3981C /* HRCollectionViewBindingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8074051EC00CAF00E3981C /* HRCollectionViewBindingHelper.m */; };
 		3C8074091EC0135A00E3981C /* HTItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8074081EC0135A00E3981C /* HTItemModel.m */; };
 		3C80740C1EC0192900E3981C /* itemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C80740B1EC0192900E3981C /* itemCell.m */; };
@@ -256,6 +257,7 @@
 		3C5A26ED1EC16B520081591A /* UserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHeaderView.m; sourceTree = "<group>"; };
 		3C5A26EF1EC18D2B0081591A /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		3C5A26F01EC18D2B0081591A /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		3C5A26F21EC1B7B90081591A /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		3C8074031EC00CAF00E3981C /* BindViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindViewDelegate.h; sourceTree = "<group>"; };
 		3C8074041EC00CAF00E3981C /* HRCollectionViewBindingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCollectionViewBindingHelper.h; sourceTree = "<group>"; };
 		3C8074051EC00CAF00E3981C /* HRCollectionViewBindingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCollectionViewBindingHelper.m; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 				3CED050F1EBC107000D8F7D3 /* BaseViewController.m */,
 				3CED05111EBC109F00D8F7D3 /* BaseWebViewController.h */,
 				3CED05121EBC109F00D8F7D3 /* BaseWebViewController.m */,
+				3C5A26F21EC1B7B90081591A /* index.html */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1040,6 +1043,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CF173F81EBB12F600EFBBFF /* Main.storyboard in Resources */,
+				3C5A26F31EC1B7B90081591A /* index.html in Resources */,
 				3CF173F71EBB12F600EFBBFF /* LaunchScreen.storyboard in Resources */,
 				3CF173F61EBB12F600EFBBFF /* Assets.xcassets in Resources */,
 			);

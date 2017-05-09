@@ -34,8 +34,11 @@
 - (void)bindViewModel
 {
     [super bindViewModel];
+   
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"index" withExtension:@"html"];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     
-    [self.webView loadURLString:self.viewModel.requestURL];
+//    [self.webView loadURLString:self.viewModel.requestURL];
     
     // 开始加载
     @weakify(self);
@@ -101,8 +104,43 @@
          }];
     }
     
+    // OC-JS回调
+    [[self
+      rac_signalForSelector:@selector(FTD_WebView:userContentController:didReceiveScriptMessage:)
+      fromProtocol:@protocol(FTDIntegrationWebViewDelegate)]
+    	subscribeNext:^(RACTuple *tuple) {
+            @strongify(self)
+            if (tuple.first == self.webView){
+                
+                if (self.viewModel.webType == kWebHomeFullviewDetailType) {
+                    WKScriptMessage *message = tuple.third;
+                    if ([message.name isEqualToString:@"showMobile"]) {
+                        NSString *phoneNum = message.body[@"value"];
+                        NSString *js = [NSString stringWithFormat:@"alertSendMsg('wj',\'%@\')",phoneNum];
+                        [self.webView FTD_stringByEvaluatingJavaScriptFromString:js];
+                    }
+                    if ([message.name isEqualToString:@"callMe"]) {
+                        NSString *phoneNum = message.body;
+                        
+                        NSString *str = [NSString stringWithFormat:@"tel:%@",phoneNum];
+                        UIWebView *callWebView = [[UIWebView alloc] init];
+                        [callWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+                        [self.view addSubview:callWebView];
+                    }
+                    if ([message.name isEqualToString:@"calculate"]) {
+                        NSString *phoneNum = message.body;
+                        NSString *sum = [NSString stringWithFormat:@"%f",[message.body[0] doubleValue] + [message.body[1] doubleValue]];
+                        NSString *js = [NSString stringWithFormat:@"showResult('%@')",sum];
+                        [self.webView FTD_stringByEvaluatingJavaScriptFromString:js];
+                    }
+                }
+            }
+        }];
+    
     self.webView.delegate = self;
 }
+
+
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
@@ -129,7 +167,9 @@
 {
     return HT_LAZY(_webView, ({
         
-        FTDIntegrationWebView *view = [FTDIntegrationWebView new];
+        NSArray *message = @[@"showMobile",@"callMe",@"calculate"];
+        
+        FTDIntegrationWebView *view = [[FTDIntegrationWebView alloc]initWithFrame:self.view.bounds WithConfiguration:message];
         [self.view addSubview:view];
         view;
     }));
