@@ -39,7 +39,7 @@
     
     [self.avatarLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(self.contentView.mas_top).offset(10);
+        make.top.equalTo(self.contentView.mas_top).offset(15);
         make.left.equalTo(self.contentView.mas_left).offset(15);
         make.right.equalTo(self.contentView.mas_right).offset(-100);
         make.height.equalTo(@40);

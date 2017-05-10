@@ -21,6 +21,16 @@
  */
 @property (strong, nonatomic) FTDIntegrationWebView *webView;
 
+/**
+ *  leftButton
+ */
+@property (strong, nonatomic) UIButton *leftButton;
+
+/**
+ *  是否点击返回按键
+ */
+@property (assign, nonatomic) NSInteger backListCount;
+
 @end
 
 @implementation BaseWebViewController
@@ -30,28 +40,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self setNavigationBar];
+
+}
+- (void)setNavigationBar
+{
+    // 导航栏navigationItem
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:self.leftButton];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
 }
 - (void)bindViewModel
 {
     [super bindViewModel];
    
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"index" withExtension:@"html"];
-    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
+//    NSURL *url = [[NSBundle mainBundle] URLForResource:@"index" withExtension:@"html"];
+//    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     
-//    [self.webView loadURLString:self.viewModel.requestURL];
+    [self.webView loadURLString:self.viewModel.requestURL];
+    
+    @weakify(self);
+    [[self.leftButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+     subscribeNext:^(UIButton * x) {
+         NSLog(@"button clicked");
+         [self backBtnAction:x];
+     }];
     
     // 开始加载
-    @weakify(self);
     [[self
       rac_signalForSelector:@selector(FTD_WebViewDidStartLoad:)
       fromProtocol:@protocol(FTDIntegrationWebViewDelegate)]
     	subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
             if (tuple.first == self.webView){
-                
-                dispatch_main_async_safe(^{
-                    [HTShowMessageView showStatusWithMessage:@"Loading..."];
-                });
+                if (self.webView.wkWebView.backForwardList.backList.count>=_backListCount) {
+                    dispatch_main_async_safe(^{
+                        [HTShowMessageView showStatusWithMessage:@"Loading..."];
+                    });
+                }
             }
         }];
     // 加载完成
@@ -61,16 +89,19 @@
     	subscribeNext:^(RACTuple *tuple) {
             @strongify(self)
             if (tuple.first == self.webView){
-                
-                dispatch_main_async_safe(^{
-                    [HTShowMessageView dismissSuccessView:@"Success"];
-                    if (self.viewModel.webType == kWebHomeFullviewDetailType) {
-                        
-                        NSString *jsMethod = @"document.getElementById(\"download\").remove();document.querySelector(\"header.has-banner\").style.marginTop = 0;";
-                        [self.webView FTD_stringByEvaluatingJavaScriptFromString:jsMethod];
+                if (tuple.first) {
+                    if (self.webView.wkWebView.backForwardList.backList.count>=_backListCount) {
+                        dispatch_main_async_safe(^{
+                            [HTShowMessageView dismissSuccessView:@"Success"];
+                            if (self.viewModel.webType == kWebHomeFullviewDetailType) {
+                                
+                                NSString *jsMethod = @"document.getElementById(\"download\").remove();document.querySelector(\"header.has-banner\").style.marginTop = 0;";
+                                [self.webView FTD_stringByEvaluatingJavaScriptFromString:jsMethod];
+                            }
+                            _backListCount = self.webView.wkWebView.backForwardList.backList.count;
+                        });
                     }
-                    
-                });
+                }
             }
         }];
     // 加载失败
@@ -141,6 +172,7 @@
 }
 
 
+
 - (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
@@ -173,6 +205,28 @@
         [self.view addSubview:view];
         view;
     }));
+}
+- (UIButton *)leftButton
+{
+    return HT_LAZY(_leftButton, ({
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(0, 0, 40, 40);
+        [button setImage:[UIImage imageNamed:@"icon_nav_back_white_19x18_"] forState:UIControlStateNormal];
+        button.adjustsImageWhenHighlighted = NO;
+        button;
+        
+    }));
+}
+#pragma mark - ***** 按钮点击事件
+#pragma mark 返回按钮点击
+- (void)backBtnAction:(UIButton *)sender
+{
+    if (self.webView.canGoBack) {
+        [self.webView goBack];
+    }else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
 }
 
 @end

@@ -11,6 +11,10 @@
 #import <IQKeyboardManager.h>
 #import "HTLBSManager.h"
 #import "HTServerConfig.h"
+#import "LoginViewController.h"
+#import "ConfigBaseNavigationViewController.h"
+#import "HRLoginViewModel.h"
+#import "HTViewModelServicesImpl.h"
 
 @interface AppDelegate ()
 
@@ -22,13 +26,13 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
-    
+
     
     // 设置跟控制器
     [self setRootController];
     // 设置服务器环境 01:生产环境  00:测试环境
     [HTServerConfig setHTConfigEnv:@"01"];
+
     // 配置IQKeyboardManager
     [self configurationIQKeyboard];
     // 获取定位信息
@@ -56,11 +60,21 @@
     self.window = [[UIWindow alloc]init];
     self.window.frame = [UIScreen mainScreen].bounds;
     
-    /********* tabbar普通样式  ***********/
-    
-    HTTabBarControllerConfig *tabBarControllerConfig = [[HTTabBarControllerConfig alloc] init];
-    [self.window setRootViewController:tabBarControllerConfig.tabBarController];
-    
+    BOOL isLogin = [BA_UserDefault objectForKey:FirstLogin];
+    if (!isLogin) {
+        //登录处理
+        // 数据服务
+        HTViewModelServicesImpl *viewModelService = [[HTViewModelServicesImpl alloc] initModelServiceImpl];
+        HRLoginViewModel *loginViewModel = [[HRLoginViewModel alloc] initWithServices:viewModelService params:nil];
+        LoginViewController *loginVC = [[LoginViewController alloc]initWithViewModel:loginViewModel];
+        ConfigBaseNavigationViewController *navController = [[ConfigBaseNavigationViewController alloc] initWithRootViewController:loginVC];
+        self.window.rootViewController = navController;
+    }else{
+        /********* tabbar普通样式  ***********/
+        HTTabBarControllerConfig *tabBarControllerConfig = [[HTTabBarControllerConfig alloc] init];
+        [self.window setRootViewController:tabBarControllerConfig.tabBarController];
+    }
+
     [self.window makeKeyAndVisible];
 }
 
@@ -68,9 +82,10 @@
 - (void)configurationIQKeyboard
 {
     IQKeyboardManager *manager = [IQKeyboardManager sharedManager];
+    manager.enable = YES;
     manager.shouldResignOnTouchOutside = YES;
     manager.shouldToolbarUsesTextFieldTintColor = YES;
-    manager.enableAutoToolbar = NO;
+    manager.enableAutoToolbar = YES;
 }
 
 - (void)configurationNetWorkStatus

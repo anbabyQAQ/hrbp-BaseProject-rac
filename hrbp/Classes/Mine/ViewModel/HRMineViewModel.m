@@ -17,7 +17,7 @@
 - (instancetype)initWithServices:(id<HTViewModelService>)services params:(NSDictionary *)params{
     
     if (self = [super initWithServices:services params:params]) {
-        _userData = [NSDictionary new];
+        _userData = [NSArray new];
     }
     return self;
 }

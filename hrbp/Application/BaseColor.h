@@ -75,4 +75,24 @@ static inline UIColor *ba_RGBAColor(float r,float g,float b, float a) { return [
 
 
 
+
+/*! 主色 */
+#define BA_Mian_Color             [UIColor colorWithHexString:@"E66440"]
+
+/*! 辅色 */
+#define BA_Assist_Color           [UIColor colorWithHexString:@"222833"]
+
+/*! titleColor */
+#define BA_Title_Color            [UIColor colorWithHexString:@"222222"]
+
+/*! SubtitleColor */
+#define BA_Subtitle_Color          [UIColor colorWithHexString:@"666666"]
+
+/*! Cutting line Color */
+#define BA_CuttingLine_Color       [UIColor colorWithHexString:@"D7D7D7"]
+
+/*! Cutting Modules Color */
+#define BA_CuttingModules_Color    [UIColor colorWithHexString:@"F1F3F6"]
+
+
 #endif /* BaseColor_h */

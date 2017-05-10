@@ -28,8 +28,8 @@ static void *FTDIntegrationWebBrowserContext = &FTDIntegrationWebBrowserContext;
 @property (nonatomic, strong) NSURL *URLToLaunchWithPermission;
 @property (nonatomic, strong) UIAlertView *externalAppPermissionAlertView;
 
-@property (nonatomic, strong) WKWebView *wkWebView;
-@property (nonatomic, strong) UIWebView *uiWebView;
+//@property (nonatomic, strong) WKWebView *wkWebView;
+//@property (nonatomic, strong) UIWebView *uiWebView;
 
 @property (nonatomic, strong) WKWebViewConfiguration *wkWebViewConfig;
 
@@ -254,6 +254,8 @@ static void *FTDIntegrationWebBrowserContext = &FTDIntegrationWebBrowserContext;
     }
     return NO;
 }
+
+
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     if(webView == self.uiWebView) {

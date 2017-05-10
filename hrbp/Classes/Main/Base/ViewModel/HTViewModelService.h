@@ -26,4 +26,8 @@
 // 获得web服务
 - (id<HTViewModelProtocolImpl>)getWebService;
 
+
+// 获取登录服务
+- (id<HTViewModelProtocolImpl>) getLoginService;
+
 @end

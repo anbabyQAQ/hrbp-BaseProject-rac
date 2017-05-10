@@ -45,7 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = SetColor(251, 247, 237);
+    self.view.backgroundColor = BA_White_Color;
     self.navigationItem.title = @"首页";
 
 //    [self setNavigationBar];
@@ -104,7 +104,7 @@
         layout.sectionInset = UIEdgeInsetsMake(40, 40, 40, 40);
         
         UICollectionView *collectionview = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10+64+170, SCREEN_WIDTH, SCREEN_HEIGHT - (10+64+170)) collectionViewLayout:layout];
-        collectionview.backgroundColor = SetColor(251, 247, 237);
+        collectionview.backgroundColor = BA_White_Color;
         [self.view addSubview:collectionview];
         collectionview;
     }));

@@ -41,12 +41,12 @@
     UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
     
     NSDictionary *textAttributes = @{NSFontAttributeName:HTSetFont(@"Noteworthy-Bold", 18),
-                                     NSForegroundColorAttributeName: [UIColor whiteColor]
+                                     NSForegroundColorAttributeName: BA_Mian_Color
                                      };
     
     [navigationBarAppearance setTitleTextAttributes:textAttributes];
     navigationBarAppearance.tintColor = [UIColor whiteColor];
-    navigationBarAppearance.barTintColor = SetColor(80, 189, 203);
+    navigationBarAppearance.barTintColor = SetColor(31, 36, 47);
 }
 - (void)setUpCustomNavigationBarWithViewController:(UIViewController *)viewController
 {

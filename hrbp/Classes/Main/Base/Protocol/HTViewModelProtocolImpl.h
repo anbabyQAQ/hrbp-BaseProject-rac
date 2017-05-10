@@ -19,4 +19,12 @@
 // 我的配置项
 - (RACSignal *)requestMineDataSignal:(NSString *)requestUrl;
 
+
+
+//登录
+- (RACSignal *)requestLogionDataSignal:(NSString *)requestUrl params:(NSDictionary *)params;
+//获取登录验证码
+- (RACSignal *)requestLogionCodeDataSignal:(NSString *)requestUrl params:(NSDictionary *)params;
+
+
 @end

@@ -84,6 +84,9 @@
 		3C80741F1EC057B500E3981C /* HTMediatorAction+HRMineAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C80741E1EC057B500E3981C /* HTMediatorAction+HRMineAboutViewController.m */; };
 		3C8074221EC0595100E3981C /* UserSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8074211EC0595100E3981C /* UserSettingCell.m */; };
 		3C8074251EC0680500E3981C /* HRTableViewBindingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8074241EC0680500E3981C /* HRTableViewBindingHelper.m */; };
+		3C83657E1EC2B96600BF059F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C83657D1EC2B96600BF059F /* LoginViewController.m */; };
+		3C8365811EC2B9BF00BF059F /* HRLoginViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8365801EC2B9BF00BF059F /* HRLoginViewModel.m */; };
+		3C8365841EC2BE2C00BF059F /* LoginProtocolImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8365831EC2BE2C00BF059F /* LoginProtocolImpl.m */; };
 		3CBE68411EBB0D7000EDB395 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBE68401EBB0D7000EDB395 /* main.m */; };
 		3CBE68471EBB0D7000EDB395 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CBE68461EBB0D7000EDB395 /* ViewController.m */; };
 		3CED04FA1EBC0B2E00D8F7D3 /* ConfigBaseNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3CED04F91EBC0B2E00D8F7D3 /* ConfigBaseNavigationViewController.m */; };
@@ -279,6 +282,12 @@
 		3C8074211EC0595100E3981C /* UserSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingCell.m; sourceTree = "<group>"; };
 		3C8074231EC0680500E3981C /* HRTableViewBindingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRTableViewBindingHelper.h; sourceTree = "<group>"; };
 		3C8074241EC0680500E3981C /* HRTableViewBindingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRTableViewBindingHelper.m; sourceTree = "<group>"; };
+		3C83657C1EC2B96600BF059F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		3C83657D1EC2B96600BF059F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		3C83657F1EC2B9BF00BF059F /* HRLoginViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRLoginViewModel.h; sourceTree = "<group>"; };
+		3C8365801EC2B9BF00BF059F /* HRLoginViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRLoginViewModel.m; sourceTree = "<group>"; };
+		3C8365821EC2BE2C00BF059F /* LoginProtocolImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginProtocolImpl.h; sourceTree = "<group>"; };
+		3C8365831EC2BE2C00BF059F /* LoginProtocolImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginProtocolImpl.m; sourceTree = "<group>"; };
 		3CBE683C1EBB0D7000EDB395 /* hrbp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hrbp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CBE68401EBB0D7000EDB395 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3CBE68451EBB0D7000EDB395 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -592,6 +601,51 @@
 			path = NSString;
 			sourceTree = "<group>";
 		};
+		3C8365771EC2B90800BF059F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				3C83657A1EC2B90800BF059F /* ViewController */,
+				3C8365781EC2B90800BF059F /* Model */,
+				3C8365791EC2B90800BF059F /* View */,
+				3C83657B1EC2B90800BF059F /* ViewModel */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		3C8365781EC2B90800BF059F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3C8365821EC2BE2C00BF059F /* LoginProtocolImpl.h */,
+				3C8365831EC2BE2C00BF059F /* LoginProtocolImpl.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3C8365791EC2B90800BF059F /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		3C83657A1EC2B90800BF059F /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3C83657C1EC2B96600BF059F /* LoginViewController.h */,
+				3C83657D1EC2B96600BF059F /* LoginViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		3C83657B1EC2B90800BF059F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3C83657F1EC2B9BF00BF059F /* HRLoginViewModel.h */,
+				3C8365801EC2B9BF00BF059F /* HRLoginViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		3CBE68331EBB0D7000EDB395 = {
 			isa = PBXGroup;
 			children = (
@@ -750,10 +804,10 @@
 		3CED05371EBC6C1600D8F7D3 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3CED053D1EBC6C6600D8F7D3 /* ViewModel */,
-				3CED053C1EBC6C5A00D8F7D3 /* Views */,
-				3CED053B1EBC6C5000D8F7D3 /* Model */,
 				3CED053A1EBC6C4200D8F7D3 /* Controller */,
+				3CED053B1EBC6C5000D8F7D3 /* Model */,
+				3CED053C1EBC6C5A00D8F7D3 /* Views */,
+				3CED053D1EBC6C6600D8F7D3 /* ViewModel */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -761,10 +815,10 @@
 		3CED05381EBC6C1F00D8F7D3 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
-				3CED054A1EBC6DD900D8F7D3 /* ViewModel */,
-				3CED05491EBC6DD100D8F7D3 /* Views */,
-				3CED05481EBC6DCB00D8F7D3 /* Model */,
 				3CED05471EBC6DBB00D8F7D3 /* Controller */,
+				3CED05481EBC6DCB00D8F7D3 /* Model */,
+				3CED05491EBC6DD100D8F7D3 /* Views */,
+				3CED054A1EBC6DD900D8F7D3 /* ViewModel */,
 			);
 			path = Mine;
 			sourceTree = "<group>";
@@ -928,10 +982,11 @@
 		3CF173FC1EBB13C800EFBBFF /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3CED04F41EBC09F200D8F7D3 /* Main */,
 				3CED05391EBC6C2900D8F7D3 /* Message */,
 				3CED05381EBC6C1F00D8F7D3 /* Mine */,
 				3CED05371EBC6C1600D8F7D3 /* Home */,
-				3CED04F41EBC09F200D8F7D3 /* Main */,
+				3C8365771EC2B90800BF059F /* Login */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1130,6 +1185,7 @@
 				3CED052A1EBC138D00D8F7D3 /* HTTableViewCell.m in Sources */,
 				3C1BDB981EBB1FA2003E712F /* UIViewController+HTHideBottomLine.m in Sources */,
 				3C1BDB9B1EBB1FA2003E712F /* HTAppDotNetAPIClient.m in Sources */,
+				3C83657E1EC2B96600BF059F /* LoginViewController.m in Sources */,
 				3C1BDC281EBB2C35003E712F /* UIDevice+Kit.m in Sources */,
 				3C1BDC2A1EBB2C35003E712F /* UIImage+BAKit.m in Sources */,
 				3CBE68471EBB0D7000EDB395 /* ViewController.m in Sources */,
@@ -1150,6 +1206,7 @@
 				3C1BDC121EBB2C35003E712F /* NSArray+BAKit.m in Sources */,
 				3CF173F51EBB12F600EFBBFF /* AppDelegate.m in Sources */,
 				3C1BDC1A1EBB2C35003E712F /* NSMutableDictionary+BAKit.m in Sources */,
+				3C8365841EC2BE2C00BF059F /* LoginProtocolImpl.m in Sources */,
 				3C1BDBA71EBB1FA2003E712F /* HTShowMessageView.m in Sources */,
 				3C1BDC1C1EBB2C35003E712F /* NSObject+BAProgressHUD.m in Sources */,
 				3C80741F1EC057B500E3981C /* HTMediatorAction+HRMineAboutViewController.m in Sources */,
@@ -1191,6 +1248,7 @@
 				3C80740C1EC0192900E3981C /* itemCell.m in Sources */,
 				3C1BDC211EBB2C35003E712F /* NSMutableAttributedString+BAKit.m in Sources */,
 				3C5A26F11EC18D2B0081591A /* UserModel.m in Sources */,
+				3C8365811EC2B9BF00BF059F /* HRLoginViewModel.m in Sources */,
 				3C1BDC301EBB2C35003E712F /* UITextField+BAKit.m in Sources */,
 				3C1BDBA81EBB1FA2003E712F /* HTUtilsMethod.m in Sources */,
 				3C1BDC0A1EBB2C35003E712F /* BAModal.m in Sources */,

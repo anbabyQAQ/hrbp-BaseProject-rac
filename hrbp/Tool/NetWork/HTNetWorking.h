@@ -198,7 +198,17 @@ typedef void(^HTResponseFail)(NSError *error);
                            params:(NSDictionary *)params
                           success:(HTResponseSuccess)success
                              fail:(HTResponseFail)fail;
-// 多一个params参数（有提示框）
+/**
+ get请求 含参有提示框
+
+ @param url url
+ @param refreshCache refreshCache
+ @param statusText statusText
+ @param params params
+ @param success success
+ @param fail fail
+ @return HTURLSessionTask
+ */
 + (HTURLSessionTask *)getWithUrl:(NSString *)url
                      refreshCache:(BOOL)refreshCache
                           showHUD:(NSString *)statusText

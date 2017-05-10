@@ -55,7 +55,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = SetColor(251, 247, 237);
+    self.view.backgroundColor = BA_White_Color;
     self.title = @"我的";
 
 }
@@ -122,8 +122,8 @@
 {
     return HT_LAZY(_headerView, ({
         
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 120)];
-        view.backgroundColor = SetColor(251, 247, 237);
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 110)];
+        view.backgroundColor = BA_CuttingModules_Color;
         [view addSubview:self.userheaderView];
         view;
     }));
@@ -153,7 +153,7 @@
     return HT_LAZY(_scrollView, ({
     
         UIScrollView *scrollview  = [[UIScrollView alloc]initWithFrame:self.view.bounds];
-        scrollview.backgroundColor = SetColor(251, 247, 237);
+        scrollview.backgroundColor = BA_White_Color;
         [self.view addSubview:scrollview];
         scrollview;
     }));

@@ -54,6 +54,10 @@
 @property (nonatomic, strong) UIProgressView *progressView;
 @property (nonatomic, strong) UIColor *tintColor;
 @property (nonatomic, strong) UIColor *barTintColor;
+
+@property (nonatomic, strong) WKWebView *wkWebView;
+@property (nonatomic, strong) UIWebView *uiWebView;
+
 /**
  *  是否可以返回上级页面
  */

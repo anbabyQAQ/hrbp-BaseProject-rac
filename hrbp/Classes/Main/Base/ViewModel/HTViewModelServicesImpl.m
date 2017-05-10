@@ -10,6 +10,7 @@
 #import "HRMineProtocolImpl.h"
 #import "HRMessageProtocolImpl.h"
 #import "WebViewProtocolImpl.h"
+#import "LoginProtocolImpl.h"
 
 @interface HTViewModelServicesImpl ()
 /**
@@ -30,6 +31,11 @@
  */
 @property (strong, nonatomic) WebViewProtocolImpl *wedService;
 
+/**
+ *  登录服务
+ */
+@property (strong, nonatomic) LoginProtocolImpl *loginService;
+
 @end
 
 @implementation HTViewModelServicesImpl
@@ -42,6 +48,7 @@
         _messageService = [HRMessageProtocolImpl new];
         _mineService = [HRMineProtocolImpl new];
         _wedService = [WebViewProtocolImpl new];
+        _loginService = [LoginProtocolImpl new];
     }
     return self;
 }
@@ -60,6 +67,10 @@
 
 - (id<HTViewModelProtocolImpl>)getWebService{
     return self.getWebService;
+}
+
+- (id<HTViewModelProtocolImpl>)getLoginService{
+    return self.loginService;
 }
 
 

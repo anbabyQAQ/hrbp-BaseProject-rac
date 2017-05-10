@@ -18,7 +18,6 @@ typedef NS_ENUM(NSUInteger, HTWebType) {
 };
 
 @interface HTWebViewModel : HTViewModel
-
 /**
  *  请求地址
  */
