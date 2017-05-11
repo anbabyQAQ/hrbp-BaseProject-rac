@@ -49,19 +49,23 @@
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
-        HTURLSessionTask *task = [HTNetWorking getWithUrl:requestUrl refreshCache:YES showHUD:@"loading..." params:params success:^(id response) {
-            
-            
-            [subscriber sendNext:self.userData];
-            [subscriber sendCompleted];
-            
-        } fail:^(NSError *error) {
-            [subscriber sendError:error];
-        }];
+//        HTURLSessionTask *task = [HTNetWorking getWithUrl:requestUrl refreshCache:YES showHUD:@"loading..." params:params success:^(id response) {
+//            
+//            
+//            [subscriber sendNext:self.userData];
+//            [subscriber sendCompleted];
+//            
+//        } fail:^(NSError *error) {
+//            [subscriber sendError:error];
+//        }];
+        
+        [subscriber sendNext:@"sdfa"];
+        [subscriber sendCompleted];
+        
         
         return [RACDisposable disposableWithBlock:^{
             
-            [task cancel];
+//            [task cancel];
         }];
     }];
 }

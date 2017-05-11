@@ -21,9 +21,6 @@
     
     [super initialize];
     
-    self.remainSeconds = 60;
-    self.startCheckTimer = 1;
-    
    
     @weakify(self);
     self.usernameSignal = [[RACObserve(self, username)
@@ -42,29 +39,24 @@
         return @([usernameValid boolValue] && [passwordValid boolValue]);
     }];
     
-    self.codeEnableSignal = [[RACObserve(self, remainSeconds)
-                              map:^id(NSNumber *text) {
-                                  @strongify(self);
-                                  return @([self isValidtime:text.integerValue]);
-                              }] distinctUntilChanged];
-    
-    
+
     self.loginCommand = [[RACCommand alloc] initWithEnabled:self.loginEnableSignal signalBlock:^RACSignal * _Nonnull(id  _Nullable input)  {
         @strongify(self);
         return [[[self.services getLoginService] requestLogionDataSignal:nil params:nil] doNext:^(id  _Nullable result) {
-            NSLog(@"%@",result);
+
+            [self pushTabbarVC];
         }];
     }];
     
- 
-
-    self.codeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        
+    self.codeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input)  {
+        @strongify(self);
         return [[[self.services getLoginService] requestLogionCodeDataSignal:nil params:nil] doNext:^(id _Nullable result) {
             
             NSLog(@"%@",result);
+
         }];
     }];
+
     
     _connectionErrors = _loginCommand.errors;
     _codeErrors       = _codeCommand.errors;
@@ -80,10 +72,14 @@
     return password.length == 6;
 }
 
-- (BOOL)isValidtime:(NSInteger )second{
-    
-    return second;
+- (BOOL)isValidPhoneNumber:(NSString *)phoneNumber{
+    //保留纯数字 ： [phoneNumber ba_removeStringSaveNumber]
+    return  [BARegularExpression ba_isPhoneNumber:[phoneNumber ba_removeStringSaveNumber]];
 }
 
+- (void)pushTabbarVC {
+    self.password = nil;
+    [APPDelegate.window setRootViewController:APPDelegate.tabBarControllerConfig.tabBarController];
+}
 
 @end

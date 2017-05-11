@@ -52,25 +52,23 @@
     
     _logoutCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
-        
+        [self pushLoginVC];
         return [RACSignal empty];
-
     }];
     
 }
 
 - (RACSignal *)executeRequestDataSignal:(id)input
 {
-
     return [[[self.services getMineService] requestMineDataSignal:nil] doNext:^(id  _Nullable result) {
         
         self.userData = result;
         
     }];
- 
 }
 
-
-
+- (void)pushLoginVC {
+    [APPDelegate.window setRootViewController:APPDelegate.navController];
+}
 
 @end

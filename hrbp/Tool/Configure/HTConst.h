@@ -15,10 +15,7 @@
 FOUNDATION_EXTERN NSString *const BannerDatakey;
 // 首页4项功能数据key
 FOUNDATION_EXTERN NSString *const BusinessActionDatakey;
-// 发现视频数据key
-FOUNDATION_EXTERN NSString *const FindVideoDatakey;
-// 发现feed数据key
-FOUNDATION_EXTERN NSString *const FindFeedDatakey;
+
 // 经度key
 FOUNDATION_EXTERN NSString *const Longitudekey;
 // 纬度key
@@ -49,7 +46,4 @@ FOUNDATION_EXTERN NSString *const HTURL_Test;
 // 首页
 FOUNDATION_EXTERN NSString *const CityTravel_URL;
 
-// 发现
-FOUNDATION_EXTERN NSString *const Find_URL;
-// 更多视频
-FOUNDATION_EXTERN NSString *const ExploreMore_URL;
+

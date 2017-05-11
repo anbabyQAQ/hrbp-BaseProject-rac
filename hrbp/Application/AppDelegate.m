@@ -6,13 +6,11 @@
  */
 
 #import "AppDelegate.h"
-#import "HTTabBarControllerConfig.h"
 #import "HTServerConfig.h"
 #import <IQKeyboardManager.h>
 #import "HTLBSManager.h"
 #import "HTServerConfig.h"
 #import "LoginViewController.h"
-#import "ConfigBaseNavigationViewController.h"
 #import "HRLoginViewModel.h"
 #import "HTViewModelServicesImpl.h"
 
@@ -31,7 +29,7 @@
     // 设置跟控制器
     [self setRootController];
     // 设置服务器环境 01:生产环境  00:测试环境
-    [HTServerConfig setHTConfigEnv:@"01"];
+    [HTServerConfig setHTConfigEnv:@"00"];
 
     // 配置IQKeyboardManager
     [self configurationIQKeyboard];
@@ -60,20 +58,17 @@
     self.window = [[UIWindow alloc]init];
     self.window.frame = [UIScreen mainScreen].bounds;
     
-    BOOL isLogin = [BA_UserDefault objectForKey:FirstLogin];
-    if (!isLogin) {
-        //登录处理
-        // 数据服务
-        HTViewModelServicesImpl *viewModelService = [[HTViewModelServicesImpl alloc] initModelServiceImpl];
-        HRLoginViewModel *loginViewModel = [[HRLoginViewModel alloc] initWithServices:viewModelService params:nil];
-        LoginViewController *loginVC = [[LoginViewController alloc]initWithViewModel:loginViewModel];
-        ConfigBaseNavigationViewController *navController = [[ConfigBaseNavigationViewController alloc] initWithRootViewController:loginVC];
-        self.window.rootViewController = navController;
-    }else{
-        /********* tabbar普通样式  ***********/
-        HTTabBarControllerConfig *tabBarControllerConfig = [[HTTabBarControllerConfig alloc] init];
-        [self.window setRootViewController:tabBarControllerConfig.tabBarController];
-    }
+    //登录处理
+    HTViewModelServicesImpl *viewModelService = [[HTViewModelServicesImpl alloc] initModelServiceImpl];
+    HRLoginViewModel *loginViewModel = [[HRLoginViewModel alloc] initWithServices:viewModelService params:nil];
+    LoginViewController *loginVC = [[LoginViewController alloc]initWithViewModel:loginViewModel];
+    self.navController = [[ConfigBaseNavigationViewController alloc] initWithRootViewController:loginVC];
+    self.window.rootViewController = self.navController;
+
+    
+    /********* tabbar普通样式  ***********/
+    self.tabBarControllerConfig = [[HTTabBarControllerConfig alloc] init];
+    
 
     [self.window makeKeyAndVisible];
 }

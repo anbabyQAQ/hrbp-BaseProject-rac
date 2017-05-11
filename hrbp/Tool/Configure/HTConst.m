@@ -14,10 +14,7 @@
 NSString *const  BannerDatakey = @"BannerDatakey";
 // 首页4项功能数据key
 NSString *const  BusinessActionDatakey = @"BusinessActionDatakey";
-// 发现视频数据key
-NSString *const  FindVideoDatakey = @"FindVideoDatakey";
-// 发现feed数据key
-NSString *const  FindFeedDatakey = @"FindFeedDatakey";
+
 // 经度key
 NSString *const  Longitudekey = @"Longitudekey";
 // 纬度key
@@ -47,8 +44,4 @@ NSString *const  HTURL_Test = @"http://api.breadtrip.com";
 // 首页
 NSString *const  CityTravel_URL = @"/v2/index/";
 
-// 发现
-NSString *const  Find_URL = @"/hunter/feeds/";
-// 更多视频
-NSString *const  ExploreMore_URL = @"/hunter/videos/";
 

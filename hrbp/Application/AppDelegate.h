@@ -7,6 +7,8 @@
 
 #import <UIKit/UIKit.h>
 #import <RealReachability.h>
+#import "HTTabBarControllerConfig.h"
+#import "ConfigBaseNavigationViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -14,7 +16,12 @@
 /**
  *  网络状态
  */
-@property (assign , nonatomic , readonly) ReachabilityStatus  NetWorkStatus;
+@property (assign , nonatomic , readonly) ReachabilityStatus         NetWorkStatus;
+
+@property (strong , nonatomic ) HTTabBarControllerConfig            *tabBarControllerConfig;
+
+@property (strong , nonatomic ) ConfigBaseNavigationViewController  *navController;
+
 
 @end
 

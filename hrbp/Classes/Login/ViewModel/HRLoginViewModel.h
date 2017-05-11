@@ -37,12 +37,9 @@
 @property (nonatomic, strong) RACSignal *usernameSignal;
 @property (nonatomic, strong) RACSignal *passwordSignal;
 @property (nonatomic, strong) RACSignal *loginEnableSignal;
-@property (nonatomic, strong) RACSignal *codeEnableSignal;
 
 
-@property (nonatomic, assign) NSInteger remainSeconds;
-
-@property (nonatomic, assign) NSInteger startCheckTimer;
+- (BOOL)isValidPhoneNumber:(NSString *)phoneNumber;
 
 
 @end

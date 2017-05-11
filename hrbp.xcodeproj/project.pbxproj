@@ -400,7 +400,8 @@
 				3C1BDB701EBB1FA2003E712F /* HTServerConfig.h */,
 				3C1BDB711EBB1FA2003E712F /* HTServerConfig.m */,
 			);
-			path = Configure;
+			name = Configure;
+			path = ../Tool/Configure;
 			sourceTree = "<group>";
 		};
 		3C1BDB721EBB1FA2003E712F /* NetWork */ = {
@@ -966,6 +967,7 @@
 				3C1BDB5C1EBB1BF7003E712F /* hrbpPrefixHeader.pch */,
 				3C1BDBA91EBB2BB3003E712F /* BaseColor.h */,
 				3C1BDBAA1EBB2BB3003E712F /* BaseDefin.h */,
+				3C1BDB6C1EBB1FA2003E712F /* Configure */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -1002,7 +1004,6 @@
 			isa = PBXGroup;
 			children = (
 				3C1BDB5F1EBB1FA2003E712F /* Category */,
-				3C1BDB6C1EBB1FA2003E712F /* Configure */,
 				3C1BDB721EBB1FA2003E712F /* NetWork */,
 				3C1BDB771EBB1FA2003E712F /* URLRouteMediator */,
 				3C1BDB881EBB1FA2003E712F /* Utils */,

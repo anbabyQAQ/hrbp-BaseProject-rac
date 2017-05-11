@@ -39,6 +39,10 @@
  */
 @property (strong, nonatomic, readonly) HRLoginViewModel *viewModel;
 
+@property (nonatomic, assign) NSInteger remainSeconds;
+
+@property (nonatomic, assign) NSInteger startCheckTimer;
+
 @end
 
 @implementation LoginViewController
@@ -46,6 +50,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    self.tfPsw.text = nil;
 }
 
 - (void)viewDidLoad {
@@ -69,15 +74,12 @@
     }];
     
     RAC(self.btLogin, enabled) = self.viewModel.loginEnableSignal;
-    RAC(self.btPsw, enabled)   = self.viewModel.codeEnableSignal;
 
     
     RAC(self.btLogin, backgroundColor) = [self.viewModel.loginEnableSignal map:^id(NSNumber *valid) {
         return [valid boolValue] ? [UIColor colorWithHexString:@"E66440" alpha:0.6] : KRGBA(254, 170, 151, 0.6);
     }];
-    RAC(self.btPsw, backgroundColor) = [self.viewModel.codeEnableSignal map:^id(NSNumber *valid) {
-        return [valid boolValue] ? [UIColor colorWithHexString:@"E66440" alpha:0.6] : KRGBA(254, 170, 151, 0.6);
-    }];
+
     
     [[[self.btLogin rac_signalForControlEvents:UIControlEventTouchUpInside]
       doNext:^(id x) {
@@ -88,24 +90,56 @@
      subscribeNext:^(id x) {
          @strongify(self);
          self.btLogin.enabled = YES;
-         [self.viewModel.loginCommand execute:@2];
+         if (![self.viewModel isValidPhoneNumber:self.tfName.text]) {
+             [BAAlertView showTitle:@"提 示" message:@"查看输入电话号码格式是否正确！"];
+         }else{
+             [self.viewModel.loginCommand execute:@2];
+         }
      }];
     
     [[[self.btPsw rac_signalForControlEvents:(UIControlEventTouchUpInside)]
        doNext:^(id x) {
            @strongify(self);
-//           self.remainSeconds = 60;
-//           self.startCheckTimer = 1;
+           self.remainSeconds = 60;
+           self.startCheckTimer = 1;
            self.btPsw.enabled = NO;
-//           [self.btGetCode.layer setBorderColor:KRGBA(128, 128, 128, 1).CGColor];
-//           [self.btGetCode setTitleColor:KRGBA(128, 128, 128, 1) forState:UIControlStateNormal];
+           self.btPsw.backgroundColor = KRGBA(254, 170, 151, 0.6);
        }]
      subscribeNext:^(NSNumber *x) {
          @strongify(self);
-         self.btPsw.enabled = YES;
-//         [self.btGetCode.layer setBorderColor:[UIColor colorWithHexString:@"e97300"].CGColor];
-//         [self.btGetCode setTitleColor:[UIColor colorWithHexString:@"e97300"] forState:UIControlStateNormal];
+         [self.viewModel.codeCommand execute:@2];
      }];
+    
+    [self.viewModel.codeCommand.executionSignals.switchToLatest subscribeNext:^(NSString *value) {
+        @strongify(self)
+        if (value) {
+            // 60s倒计时
+            [self setCountdownTime];
+        }
+    }];
+}
+
+- (void)setCountdownTime{
+    RACSignal *codeTitleSignal = [[[RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]]
+                                   take:self.remainSeconds+1]
+                                  map:^id(NSDate* value) {
+                                      NSString *text;
+                                      if(self.remainSeconds > 0 && self.startCheckTimer){
+                                          self.remainSeconds = self.remainSeconds - 1;
+                                          if(self.remainSeconds == 0){
+                                              self.startCheckTimer = 0;
+                                          }
+                                          text = [NSString stringWithFormat:@"%lds重新获取",self.remainSeconds];
+                                      }else{
+                                          text  = [NSString stringWithFormat:@"获取验证码"];
+                                          self.btPsw.enabled = YES;
+                                          self.btPsw.backgroundColor = [UIColor colorWithHexString:@"E66440" alpha:0.6];
+                                      }
+                                      return text;
+                                  }];
+    [codeTitleSignal subscribeNext:^(id x) {
+        [self.btPsw setTitle:x forState:(UIControlStateNormal)];
+    }];
 }
 
 - (void)viewWillLayoutSubviews
