@@ -46,7 +46,7 @@
         NSDictionary *params = @{@"userAccountNum":self.username,@"verifCode":self.password,@"apiKey":@"1c22a4dc-fce6-4b22-ae4a-3a0f3031bbcd"};
         return [[[self.services getLoginService] requestLogionDataSignal:Login_URL params:params] doNext:^(id  _Nullable result) {
 
-            [self pushTabbarVC];
+            [self pushTabbarController];
         }];
     }];
     
@@ -82,9 +82,17 @@
     return  [BARegularExpression ba_isPhoneNumber:[phoneNumber ba_removeStringSaveNumber]];
 }
 
-- (void)pushTabbarVC {
+- (void)pushTabbarController {
     self.password = nil;
-    [APPDelegate.window setRootViewController:APPDelegate.tabBarControllerConfig.tabBarController];
+    [UIView transitionFromView:APPDelegate.window.rootViewController.view
+                        toView:APPDelegate.tabBarControllerConfig.tabBarController.view
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionCurlUp
+                    completion:^(BOOL finished)
+     {
+         [APPDelegate.window setRootViewController:APPDelegate.tabBarControllerConfig.tabBarController];
+     }];
+
 }
 
 @end

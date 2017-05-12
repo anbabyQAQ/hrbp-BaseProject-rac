@@ -121,15 +121,14 @@ static void *FTDIntegrationWebBrowserContext = &FTDIntegrationWebBrowserContext;
             [self.uiWebView.scrollView setAlwaysBounceVertical:YES];
             [self addSubview:self.uiWebView];
         }
-        /*
+        
          self.progressView = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
          [self.progressView setTrackTintColor:[UIColor colorWithWhite:1.0f alpha:0.0f]];
-         [self.progressView setFrame:self.bounds];
-         
+         [self.progressView setFrame:CGRectMake(0, 64, SCREEN_WIDTH, 5)];
          //设置进度条颜色
          [self setTintColor:[UIColor orangeColor]];
          [self addSubview:self.progressView];
-         */
+        
     }
     return self;
 

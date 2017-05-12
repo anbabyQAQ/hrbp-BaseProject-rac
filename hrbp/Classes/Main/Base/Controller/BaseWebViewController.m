@@ -59,9 +59,7 @@
 //    NSURL *url = [[NSBundle mainBundle] URLForResource:@"index" withExtension:@"html"];
 //    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     
-//    [self.webView loadURLString:self.viewModel.requestURL];
-    [self.webView loadURLString:@"http://192.168.100.62:8080/hrbp/index.html"];
-
+    [self.webView loadURLString:self.viewModel.requestURL];
     
     @weakify(self);
     [[self.leftButton rac_signalForControlEvents:UIControlEventTouchUpInside]

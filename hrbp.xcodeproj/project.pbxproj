@@ -82,7 +82,6 @@
 		3C8074131EC04B2A00E3981C /* HTMediatorAction+BaseWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8074121EC04B2A00E3981C /* HTMediatorAction+BaseWebViewController.m */; };
 		3C8074161EC0535100E3981C /* HRMineAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8074151EC0535100E3981C /* HRMineAboutViewController.m */; };
 		3C8074191EC053EB00E3981C /* HRAboutUsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8074181EC053EB00E3981C /* HRAboutUsViewModel.m */; };
-		3C80741C1EC0543500E3981C /* HRVersionAboutViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C80741B1EC0543500E3981C /* HRVersionAboutViewModel.m */; };
 		3C80741F1EC057B500E3981C /* HTMediatorAction+HRMineAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C80741E1EC057B500E3981C /* HTMediatorAction+HRMineAboutViewController.m */; };
 		3C8074221EC0595100E3981C /* UserSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8074211EC0595100E3981C /* UserSettingCell.m */; };
 		3C8074251EC0680500E3981C /* HRTableViewBindingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8074241EC0680500E3981C /* HRTableViewBindingHelper.m */; };
@@ -280,8 +279,6 @@
 		3C8074151EC0535100E3981C /* HRMineAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRMineAboutViewController.m; sourceTree = "<group>"; };
 		3C8074171EC053EB00E3981C /* HRAboutUsViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRAboutUsViewModel.h; sourceTree = "<group>"; };
 		3C8074181EC053EB00E3981C /* HRAboutUsViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRAboutUsViewModel.m; sourceTree = "<group>"; };
-		3C80741A1EC0543500E3981C /* HRVersionAboutViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRVersionAboutViewModel.h; sourceTree = "<group>"; };
-		3C80741B1EC0543500E3981C /* HRVersionAboutViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRVersionAboutViewModel.m; sourceTree = "<group>"; };
 		3C80741D1EC057B500E3981C /* HTMediatorAction+HRMineAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "HTMediatorAction+HRMineAboutViewController.h"; sourceTree = "<group>"; };
 		3C80741E1EC057B500E3981C /* HTMediatorAction+HRMineAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "HTMediatorAction+HRMineAboutViewController.m"; sourceTree = "<group>"; };
 		3C8074201EC0595100E3981C /* UserSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingCell.h; sourceTree = "<group>"; };
@@ -929,8 +926,6 @@
 				3CED055F1EBC74D600D8F7D3 /* HRMineViewModel.m */,
 				3C8074171EC053EB00E3981C /* HRAboutUsViewModel.h */,
 				3C8074181EC053EB00E3981C /* HRAboutUsViewModel.m */,
-				3C80741A1EC0543500E3981C /* HRVersionAboutViewModel.h */,
-				3C80741B1EC0543500E3981C /* HRVersionAboutViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1275,7 +1270,6 @@
 				3C8074061EC00CAF00E3981C /* HRCollectionViewBindingHelper.m in Sources */,
 				3C1BDC271EBB2C35003E712F /* UIColor+BAKit.m in Sources */,
 				3CED05071EBC0D9400D8F7D3 /* HTCustomTabBarButton.m in Sources */,
-				3C80741C1EC0543500E3981C /* HRVersionAboutViewModel.m in Sources */,
 				3C8074091EC0135A00E3981C /* HTItemModel.m in Sources */,
 				3C1BDBA01EBB1FA2003E712F /* VKURLParser.m in Sources */,
 				3C1BDB961EBB1FA2003E712F /* UISearchBar+HTAdd.m in Sources */,

@@ -29,7 +29,7 @@
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
 //        HTURLSessionTask *task = [HTNetWorking getWithUrl:requestUrl refreshCache:YES showHUD:@"loading..." params:params success:^(id response) {
-//            
+//
 //            NSDictionary *responseDic = response;
 //            NSNumber* num_code=[DataUtil numberForKey:@"code" inDictionary:responseDic];
 //            NSInteger code=[num_code integerValue];

@@ -8,7 +8,6 @@
 #import "HRMineViewModel.h"
 #import "HRMineAboutViewController.h"
 #import "HRAboutUsViewModel.h"
-#import "HRVersionAboutViewModel.h"
 #import "HTViewModelServicesImpl.h"
 #import "HTMediatorAction+HRMineAboutViewController.h"
 
@@ -44,7 +43,7 @@
     
     _logoutCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
         
-        [self pushLoginVC];
+        [self showActionSheet];
         return [RACSignal empty];
     }];
 }
@@ -56,10 +55,10 @@
     }];
 }
 
-- (void)pushLoginVC
+- (void)showActionSheet
 {
-    NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:@"温馨提示：" attributes:@{NSForegroundColorAttributeName:[UIColor orangeColor]}];
-    NSString *result = @"是否退出登录？";
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:@"温馨提示:" attributes:@{NSForegroundColorAttributeName:[UIColor orangeColor]}];
+    NSString *result = @"是否退出登录?";
     
     /*! 关键字添加效果 */
     NSMutableAttributedString *attributedMessage = [[NSMutableAttributedString alloc]initWithString:result attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:[UIColor darkGrayColor],NSKernAttributeName:@2.0,NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),NSStrokeColorAttributeName:[UIColor darkGrayColor]}];
@@ -73,10 +72,9 @@
                                                message:@"Test Message"
                               mutableAttributedMessage:attributedMessage
                                      buttonTitlesArray:@[@"确 定", @"取 消"]
-                                 buttonTitleColorArray:@[[UIColor redColor], [UIColor blackColor]]
+                                 buttonTitleColorArray:@[BA_Mian_Color, [UIColor darkGrayColor]]
 #if TARGET_OS_IOS
                     popoverPresentationControllerBlock:^(UIPopoverPresentationController *popover){
-                        
                         popover.sourceView = currentVC.view;
                         popover.sourceRect = currentVC.view.frame;
                     }
@@ -84,9 +82,22 @@
                                               tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
                                                   NSLog(@"你点击了第 %ld 个按钮！", (long)buttonIndex);
                                                   if (buttonIndex == 0) {
-                                                       [APPDelegate.window setRootViewController:APPDelegate.navController];
+                                                      [self pushLoginController];
                                                   }
                                               }];
+}
+
+- (void)pushLoginController {
+    [UIView transitionFromView:APPDelegate.window.rootViewController.view
+                        toView:APPDelegate.navController.view
+                      duration:0.5
+                       options:UIViewAnimationOptionTransitionCurlDown
+                    completion:^(BOOL finished)
+     {
+         APPDelegate.tabBarControllerConfig.tabBarController.selectedIndex = 0;
+         [APPDelegate.window setRootViewController:APPDelegate.navController];
+     }];
+    
 }
 
 @end

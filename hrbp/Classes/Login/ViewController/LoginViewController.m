@@ -49,7 +49,7 @@
 @dynamic viewModel;
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:NO];
     self.tfPsw.text = nil;
 }
 
