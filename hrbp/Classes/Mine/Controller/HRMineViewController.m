@@ -136,13 +136,6 @@
         view.backgroundColor = [UIColor whiteColor];
         
         /*! 登陆成功后，将数据库获取信息赋值给 BAUserModel，并发送通知 */
-        UserModel *model = [UserModel new];
-        model.phone        = @"13311097869";
-        model.nickName     = @"张三";
-        model.pwd          = @"";
-        model.department   = @"西城区-冠华大厦移动互联网";
-        model.isLogin      = YES;
-        
         [view setUserModel:USERSHARE];
         view;
     }));

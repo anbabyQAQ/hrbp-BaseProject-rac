@@ -41,7 +41,7 @@
     UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
     
     NSDictionary *textAttributes = @{NSFontAttributeName:HTSetFont(@"Noteworthy-Bold", 18),
-                                     NSForegroundColorAttributeName: BA_Mian_Color
+                                     NSForegroundColorAttributeName: BA_White_Color
                                      };
     
     [navigationBarAppearance setTitleTextAttributes:textAttributes];

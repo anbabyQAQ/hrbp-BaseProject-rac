@@ -34,4 +34,13 @@
  *  隐藏提示
  */
 - (void)BA_hideProgress;
+
+
+/**
+ *获取当前屏幕的最上方控制器
+
+ @return vc
+ */
+- (UIViewController *)getCurrentViewController;
+
 @end

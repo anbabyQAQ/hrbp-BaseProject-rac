@@ -26,26 +26,18 @@
     [super initialize];
     
     _detailCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal *(id input) {
-        
+        NSString *flag = input[@"userConfiguration"];
         NSLog(@"%@",input);
-//        switch (input.row) {
-//            case 0:{
-//                HTViewModelServicesImpl *servicesImpl = [[HTViewModelServicesImpl alloc] initModelServiceImpl];
-//                HRAboutUsViewModel *viewModel = [[HRAboutUsViewModel alloc] initWithServices:servicesImpl params:nil];
-//                [[HTMediatorAction sharedInstance] pushAboutUsControllerWithViewModel:viewModel];
-//            }
-//            case 1:{
-//                HTViewModelServicesImpl *servicesImpl = [[HTViewModelServicesImpl alloc] initModelServiceImpl];
-//                HRAboutUsViewModel *viewModel = [[HRAboutUsViewModel alloc] initWithServices:servicesImpl params:nil];
-//                [[HTMediatorAction sharedInstance] pushAboutUsControllerWithViewModel:viewModel];
-//            }
-        
-//                break;
-//                
-//            default:
-//                break;
-//        }
-        
+        if ([flag isEqualToString:@"关于我们"]) {
+            HTViewModelServicesImpl *servicesImpl = [[HTViewModelServicesImpl alloc] initModelServiceImpl];
+            HRAboutUsViewModel *viewModel = [[HRAboutUsViewModel alloc] initWithServices:servicesImpl params:nil];
+            [[HTMediatorAction sharedInstance] pushAboutUsControllerWithViewModel:viewModel];
+        }
+        if ([flag isEqualToString:@"版本检测"]) {
+            
+            [BAAlertView showTitle:@"提示" message:[NSString stringWithFormat:@"当前应用版本：v%@",[CommonUtils getAppVersion]]];
+        }
+    
         return [RACSignal empty];
         
     }];
@@ -55,20 +47,46 @@
         [self pushLoginVC];
         return [RACSignal empty];
     }];
-    
 }
 
 - (RACSignal *)executeRequestDataSignal:(id)input
 {
     return [[[self.services getMineService] requestMineDataSignal:nil] doNext:^(id  _Nullable result) {
-        
         self.userData = result;
-        
     }];
 }
 
-- (void)pushLoginVC {
-    [APPDelegate.window setRootViewController:APPDelegate.navController];
+- (void)pushLoginVC
+{
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:@"温馨提示：" attributes:@{NSForegroundColorAttributeName:[UIColor orangeColor]}];
+    NSString *result = @"是否退出登录？";
+    
+    /*! 关键字添加效果 */
+    NSMutableAttributedString *attributedMessage = [[NSMutableAttributedString alloc]initWithString:result attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:20],NSForegroundColorAttributeName:[UIColor darkGrayColor],NSKernAttributeName:@2.0,NSStrikethroughStyleAttributeName:@(NSUnderlineStyleSingle),NSStrokeColorAttributeName:[UIColor darkGrayColor]}];
+    
+    UIViewController *currentVC = [self getCurrentViewController];
+
+    
+    [UIAlertController showActionSheetInViewController:currentVC
+                                             withTitle:@"Test Action Sheet"
+                                mutableAttributedTitle:title
+                                               message:@"Test Message"
+                              mutableAttributedMessage:attributedMessage
+                                     buttonTitlesArray:@[@"确 定", @"取 消"]
+                                 buttonTitleColorArray:@[[UIColor redColor], [UIColor blackColor]]
+#if TARGET_OS_IOS
+                    popoverPresentationControllerBlock:^(UIPopoverPresentationController *popover){
+                        
+                        popover.sourceView = currentVC.view;
+                        popover.sourceRect = currentVC.view.frame;
+                    }
+#endif
+                                              tapBlock:^(UIAlertController * _Nonnull controller, UIAlertAction * _Nonnull action, NSInteger buttonIndex) {
+                                                  NSLog(@"你点击了第 %ld 个按钮！", (long)buttonIndex);
+                                                  if (buttonIndex == 0) {
+                                                       [APPDelegate.window setRootViewController:APPDelegate.navController];
+                                                  }
+                                              }];
 }
 
 @end

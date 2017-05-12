@@ -74,6 +74,8 @@
 		3C5A26EE1EC16B520081591A /* UserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A26ED1EC16B520081591A /* UserHeaderView.m */; };
 		3C5A26F11EC18D2B0081591A /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A26F01EC18D2B0081591A /* UserModel.m */; };
 		3C5A26F31EC1B7B90081591A /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C5A26F21EC1B7B90081591A /* index.html */; };
+		3C6953DF1EC438A900C42E9C /* DataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6953DE1EC438A900C42E9C /* DataUtil.m */; };
+		3C6953E21EC458E800C42E9C /* UIAlertController+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6953E11EC458E800C42E9C /* UIAlertController+Blocks.m */; };
 		3C8074061EC00CAF00E3981C /* HRCollectionViewBindingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8074051EC00CAF00E3981C /* HRCollectionViewBindingHelper.m */; };
 		3C8074091EC0135A00E3981C /* HTItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8074081EC0135A00E3981C /* HTItemModel.m */; };
 		3C80740C1EC0192900E3981C /* itemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C80740B1EC0192900E3981C /* itemCell.m */; };
@@ -261,6 +263,10 @@
 		3C5A26EF1EC18D2B0081591A /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		3C5A26F01EC18D2B0081591A /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		3C5A26F21EC1B7B90081591A /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		3C6953DD1EC438A900C42E9C /* DataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataUtil.h; sourceTree = "<group>"; };
+		3C6953DE1EC438A900C42E9C /* DataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataUtil.m; sourceTree = "<group>"; };
+		3C6953E01EC458E800C42E9C /* UIAlertController+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertController+Blocks.h"; path = "../UIAlertController+Blocks.h"; sourceTree = "<group>"; };
+		3C6953E11EC458E800C42E9C /* UIAlertController+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIAlertController+Blocks.m"; path = "../UIAlertController+Blocks.m"; sourceTree = "<group>"; };
 		3C8074031EC00CAF00E3981C /* BindViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindViewDelegate.h; sourceTree = "<group>"; };
 		3C8074041EC00CAF00E3981C /* HRCollectionViewBindingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HRCollectionViewBindingHelper.h; sourceTree = "<group>"; };
 		3C8074051EC00CAF00E3981C /* HRCollectionViewBindingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRCollectionViewBindingHelper.m; sourceTree = "<group>"; };
@@ -453,6 +459,8 @@
 		3C1BDB881EBB1FA2003E712F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				3C6953DD1EC438A900C42E9C /* DataUtil.h */,
+				3C6953DE1EC438A900C42E9C /* DataUtil.m */,
 				3C1BDB891EBB1FA2003E712F /* HTLBSManager.h */,
 				3C1BDB8A1EBB1FA2003E712F /* HTLBSManager.m */,
 				3C1BDB8B1EBB1FA2003E712F /* HTRefreshGifFooter.h */,
@@ -550,6 +558,8 @@
 		3C1BDBAC1EBB2C34003E712F /* BAAlert */ = {
 			isa = PBXGroup;
 			children = (
+				3C6953E01EC458E800C42E9C /* UIAlertController+Blocks.h */,
+				3C6953E11EC458E800C42E9C /* UIAlertController+Blocks.m */,
 				3C1BDBAD1EBB2C34003E712F /* BAAlertView.h */,
 				3C1BDBAE1EBB2C34003E712F /* BAAlertView.m */,
 				3C1BDBAF1EBB2C34003E712F /* BAModal.h */,
@@ -1190,6 +1200,7 @@
 				3C1BDC281EBB2C35003E712F /* UIDevice+Kit.m in Sources */,
 				3C1BDC2A1EBB2C35003E712F /* UIImage+BAKit.m in Sources */,
 				3CBE68471EBB0D7000EDB395 /* ViewController.m in Sources */,
+				3C6953E21EC458E800C42E9C /* UIAlertController+Blocks.m in Sources */,
 				3C1BDBA61EBB1FA2003E712F /* HTRefreshGifHeader.m in Sources */,
 				3C1BDB9C1EBB1FA2003E712F /* HTNetWorking.m in Sources */,
 				3C1BDC151EBB2C35003E712F /* NSDateFormatter+BAKit.m in Sources */,
@@ -1234,6 +1245,7 @@
 				3C1BDC2B1EBB2C35003E712F /* UIImage+CompressImage.m in Sources */,
 				3C1BDC1F1EBB2C35003E712F /* NSProcessInfo+BAKit.m in Sources */,
 				3C1BDC141EBB2C35003E712F /* NSDate+BAKit.m in Sources */,
+				3C6953DF1EC438A900C42E9C /* DataUtil.m in Sources */,
 				3C1BDB971EBB1FA2003E712F /* UIView+UIViewController.m in Sources */,
 				3C1BDB9D1EBB1FA2003E712F /* HTMediatorAction.m in Sources */,
 				3C1BDC2C1EBB2C35003E712F /* UIImageView+BAKit.m in Sources */,

@@ -59,7 +59,9 @@
 //    NSURL *url = [[NSBundle mainBundle] URLForResource:@"index" withExtension:@"html"];
 //    [self.webView loadRequest:[NSURLRequest requestWithURL:url]];
     
-    [self.webView loadURLString:self.viewModel.requestURL];
+//    [self.webView loadURLString:self.viewModel.requestURL];
+    [self.webView loadURLString:@"http://192.168.100.62:8080/hrbp/index.html"];
+
     
     @weakify(self);
     [[self.leftButton rac_signalForControlEvents:UIControlEventTouchUpInside]
@@ -145,9 +147,16 @@
                 
                 if (self.viewModel.webType == kWebHomeFullviewDetailType) {
                     WKScriptMessage *message = tuple.third;
-                    if ([message.name isEqualToString:@"showMobile"]) {
-                        NSString *phoneNum = message.body[@"value"];
-                        NSString *js = [NSString stringWithFormat:@"alertSendMsg('wj',\'%@\')",phoneNum];
+                    if ([message.name isEqualToString:@"getDataFromNative"]) {
+                        NSLog(@"WKScriptMessage : %@",message.body[@"callback"]);
+                        NSLog(@"WKScriptMessage : %@",message.body[@"params"]);
+                        NSLog(@"WKScriptMessage : %@",message.body[@"url"]);
+                        NSLog(@"WKScriptMessage : %@",message.body[@"type"]);
+
+                        //{url:url, type:type,callBack:callBack,params:params}
+                        NSString *jsFuntion = message.body[@"callback"];
+                        NSDictionary *dic = @{@"code":@200,@"status":@"SUCCEED",@"time":@"2017-4-08 18:28:18",@"data":@[@{@"inPostYesRate":@[@{@"proportion":@"50%",@"totalNum":@"630"}],@"inPostNoRate":@[@{@"proportion":@"80%",@"totalNum":@"742"}]}]};
+                        NSString *js = [NSString stringWithFormat:@"%@('%@')",jsFuntion,dic.jsonStringEncoded];
                         [self.webView FTD_stringByEvaluatingJavaScriptFromString:js];
                     }
                     if ([message.name isEqualToString:@"callMe"]) {
@@ -199,7 +208,7 @@
 {
     return HT_LAZY(_webView, ({
         
-        NSArray *message = @[@"showMobile",@"callMe",@"calculate"];
+        NSArray *message = @[@"getDataFromNative"];
         
         FTDIntegrationWebView *view = [[FTDIntegrationWebView alloc]initWithFrame:self.view.bounds WithConfiguration:message];
         [self.view addSubview:view];

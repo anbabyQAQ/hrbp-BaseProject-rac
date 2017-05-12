@@ -38,6 +38,9 @@
 @property (nonatomic, strong) RACSignal *passwordSignal;
 @property (nonatomic, strong) RACSignal *loginEnableSignal;
 
+//验证码
+@property (nonatomic, strong) NSString *verifCode;
+
 
 - (BOOL)isValidPhoneNumber:(NSString *)phoneNumber;
 

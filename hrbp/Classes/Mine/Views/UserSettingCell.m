@@ -58,12 +58,9 @@
 
 - (void)bindViewModel:(id)viewModel withParams:(NSDictionary *)params
 {
-    
     HRMineViewModel *mineViewModel = viewModel;
     NSDictionary *dic = mineViewModel.userData[[params[DataIndex] integerValue]];
-    self.avatarLabel.text = dic[@"AboutUs"];
-//    self.avatarView.image = dic[@"VersionCheck"];
-
+    self.avatarLabel.text = dic[@"userConfiguration"];
 }
 
 - (UIImageView *)avatarView

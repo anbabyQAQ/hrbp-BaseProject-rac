@@ -10,6 +10,23 @@
 
 @implementation NSObject (BAProgressHUD)
 
+/** 获取当前屏幕的最上方控制器 */
+- (UIViewController *)getCurrentViewController
+{
+    UIViewController *vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    // vc: 导航控制器, 标签控制器, 普通控制器
+    if ([vc isKindOfClass:[UITabBarController class]])
+    {
+        vc = [(UITabBarController *)vc selectedViewController];
+    }
+    if ([vc isKindOfClass:[UINavigationController class]])
+    {
+        vc = [(UINavigationController *)vc visibleViewController];
+    }
+    
+    return vc;
+}
+
 /** 获取当前屏幕的最上方正在显示的那个view */
 - (UIView *)getCurrentView
 {

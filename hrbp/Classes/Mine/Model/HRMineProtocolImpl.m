@@ -43,10 +43,10 @@
         [self.userdata removeAllObjects];
         
         NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-        [dic setObject:@"关于我们" forKey:@"AboutUs"];
+        [dic setObject:@"关于我们" forKey:@"userConfiguration"];
         
         NSMutableDictionary *dic2 = [NSMutableDictionary dictionary];
-        [dic2 setObject:@"版本检测" forKey:@"AboutUs"];
+        [dic2 setObject:@"版本检测" forKey:@"userConfiguration"];
 
      
         [self.userdata addObject:dic];

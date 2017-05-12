@@ -45,3 +45,14 @@ NSString *const  HTURL_Test = @"http://api.breadtrip.com";
 NSString *const  CityTravel_URL = @"/v2/index/";
 
 
+// 登录
+NSString *const  Login_URL = @"/user/userLogin/";
+// 获取验证码
+NSString *const  VerifCode_URL = @"/user/getVerifCode/";
+
+
+
+
+
+
+

@@ -47,3 +47,9 @@ FOUNDATION_EXTERN NSString *const HTURL_Test;
 FOUNDATION_EXTERN NSString *const CityTravel_URL;
 
 
+
+// 登录
+FOUNDATION_EXTERN NSString *const Login_URL;
+// 获取验证码
+FOUNDATION_EXTERN NSString *const VerifCode_URL;
+

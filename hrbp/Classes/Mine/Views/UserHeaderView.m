@@ -43,20 +43,20 @@
 - (void)setUserSignal:(RACSignal *)userSignal{
    
     _userSignal = userSignal;
-    @weakify(self);
-    [_userSignal subscribeNext:^(id x) {
-        
+//    @weakify(self);
+//    [_userSignal subscribeNext:^(id x) {
+//        
 //        @strongify(self);
-       
-    }];
+//
+//    }];
 }
 
 - (void)setUserModel:(UserModel *)userModel{
     _userModel = userModel;
     if (_userModel) {
         
-        self.name.text = _userModel.nickName;
-        self.department.text = _userModel.department;
+        self.name.text = _userModel.name;
+        self.department.text = _userModel.position;
     }
 }
 

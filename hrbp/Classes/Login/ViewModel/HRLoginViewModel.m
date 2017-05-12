@@ -42,7 +42,9 @@
 
     self.loginCommand = [[RACCommand alloc] initWithEnabled:self.loginEnableSignal signalBlock:^RACSignal * _Nonnull(id  _Nullable input)  {
         @strongify(self);
-        return [[[self.services getLoginService] requestLogionDataSignal:nil params:nil] doNext:^(id  _Nullable result) {
+     
+        NSDictionary *params = @{@"userAccountNum":self.username,@"verifCode":self.password,@"apiKey":@"1c22a4dc-fce6-4b22-ae4a-3a0f3031bbcd"};
+        return [[[self.services getLoginService] requestLogionDataSignal:Login_URL params:params] doNext:^(id  _Nullable result) {
 
             [self pushTabbarVC];
         }];
@@ -50,9 +52,12 @@
     
     self.codeCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input)  {
         @strongify(self);
-        return [[[self.services getLoginService] requestLogionCodeDataSignal:nil params:nil] doNext:^(id _Nullable result) {
+        
+        NSDictionary *params = @{@"phoneNum":self.username,@"apiKey":@"1c22a4dc-fce6-4b22-ae4a-3a0f3031bbcd"};
+        return [[[self.services getLoginService] requestLogionCodeDataSignal:VerifCode_URL params:params] doNext:^(id _Nullable result) {
             
             NSLog(@"%@",result);
+            self.verifCode = result;
 
         }];
     }];

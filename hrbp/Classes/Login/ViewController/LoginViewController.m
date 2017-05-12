@@ -63,15 +63,15 @@
     RAC(self.viewModel, username) = self.tfName.rac_textSignal;
     RAC(self.viewModel, password) = self.tfPsw.rac_textSignal;
 
-    [self.viewModel.connectionErrors subscribeNext:^(NSError *error) {
-        NSLog(@"错误了，给个提示 error is %@",error);
-        [BAAlertView showTitle:@"提示" message:@"错误了，给个提示"];
-    }];
-    
-    [self.viewModel.codeErrors subscribeNext:^(NSError *error) {
-        NSLog(@"错误了，给个提示 error is %@",error);
-        [BAAlertView showTitle:@"提示" message:@"错误了，给个提示"];
-    }];
+//    [self.viewModel.connectionErrors subscribeNext:^(NSError *error) {
+//        NSLog(@"错误了，给个提示 error is %@",error);
+//        [BAAlertView showTitle:@"提示" message:@"错误了，给个提示"];
+//    }];
+//    
+//    [self.viewModel.codeErrors subscribeNext:^(NSError *error) {
+//        NSLog(@"错误了，给个提示 error is %@",error);
+//        [BAAlertView showTitle:@"提示" message:@"错误了，给个提示"];
+//    }];
     
     RAC(self.btLogin, enabled) = self.viewModel.loginEnableSignal;
 
@@ -107,7 +107,13 @@
        }]
      subscribeNext:^(NSNumber *x) {
          @strongify(self);
-         [self.viewModel.codeCommand execute:@2];
+         self.btPsw.enabled = YES;
+         self.btPsw.backgroundColor = [UIColor colorWithHexString:@"E66440" alpha:0.6];
+         if (![self.viewModel isValidPhoneNumber:self.tfName.text]) {
+             [BAAlertView showTitle:@"提 示" message:@"查看输入电话号码格式是否正确！"];
+         }else{
+             [self.viewModel.codeCommand execute:@2];
+         }
      }];
     
     [self.viewModel.codeCommand.executionSignals.switchToLatest subscribeNext:^(NSString *value) {
@@ -120,6 +126,7 @@
 }
 
 - (void)setCountdownTime{
+    self.btPsw.enabled = NO;
     RACSignal *codeTitleSignal = [[[RACSignal interval:1 onScheduler:[RACScheduler mainThreadScheduler]]
                                    take:self.remainSeconds+1]
                                   map:^id(NSDate* value) {
