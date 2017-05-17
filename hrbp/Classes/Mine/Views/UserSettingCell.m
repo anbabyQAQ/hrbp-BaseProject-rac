@@ -42,7 +42,7 @@
         make.top.equalTo(self.contentView.mas_top).offset(15);
         make.left.equalTo(self.contentView.mas_left).offset(15);
         make.right.equalTo(self.contentView.mas_right).offset(-100);
-        make.height.equalTo(@40);
+        make.height.equalTo(@30);
     }];
     
     [self.avatarView mas_makeConstraints:^(MASConstraintMaker *make) {

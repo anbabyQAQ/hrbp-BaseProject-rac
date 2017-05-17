@@ -13,7 +13,6 @@ typedef NS_ENUM(NSUInteger, HTWebType) {
     kWebHomePersonnelFlowDetailType                      = 2, // 首页人员流动分析
     kWebHomePersonnelWorkingEfficiencyDetailType         = 3, // 首页员工工作效率评估
     kWebHomePersonnelStandardDetailType                  = 4, // 首页员工规范
-
     
 };
 
@@ -26,6 +25,24 @@ typedef NS_ENUM(NSUInteger, HTWebType) {
  *  web页面类型
  */
 @property (assign , nonatomic) HTWebType webType;
+
+
+/**
+ *  JSURL
+ */
+@property (strong , nonatomic) NSString  *JSUrl;
+/**
+ *  JSparams
+ */
+@property (strong , nonatomic) NSString  *params;
+/**
+ *  网络请求
+ */
+@property (strong, nonatomic) RACCommand *requestCommand;
+/**
+ *  用户基本信息以及权限信息 回调
+ */
+@property (strong, nonatomic) RACCommand *userInfoCommand;
 
 - (instancetype)initWithServices:(id<HTViewModelService>)services params:(NSDictionary *)params;
 

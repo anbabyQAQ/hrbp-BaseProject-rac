@@ -99,7 +99,7 @@ function showResult(sum) {
 
 //JS响应方法列表
 function btnClick1() {
-    window.webkit.messageHandlers.showMobile.postMessage({functionName:"exec", value:"13523038086"});
+    window.webkit.messageHandlers.getDataFromNative.postMessage({type:"1001", url:"http://192.9.100.76:60001/mts-ci/v250/tag/feed//13311097869",callback:"alertSendMsg",params:{type:"get",mdn:"13311097869"}});
     
 }
 

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C0CE7C31ECAE71D00B814DC /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C0CE7C21ECAE71D00B814DC /* index.html */; };
+		3C0CE7C61ECAFACA00B814DC /* RegionalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CE7C51ECAFACA00B814DC /* RegionalModel.m */; };
+		3C0CE7C91ECAFAEE00B814DC /* RegionalScopeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CE7C81ECAFAEE00B814DC /* RegionalScopeModel.m */; };
 		3C1BDB5E1EBB1D1A003E712F /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C1BDB5D1EBB1D1A003E712F /* WebKit.framework */; };
 		3C1BDB931EBB1FA2003E712F /* UIBarButtonItem+HTBarButtonCustom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1BDB611EBB1FA2003E712F /* UIBarButtonItem+HTBarButtonCustom.m */; };
 		3C1BDB941EBB1FA2003E712F /* UIImage+HTRoundImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1BDB631EBB1FA2003E712F /* UIImage+HTRoundImage.m */; };
@@ -73,7 +76,6 @@
 		3C1BDC341EBB2C35003E712F /* UIWebView+BAKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C1BDC081EBB2C35003E712F /* UIWebView+BAKit.m */; };
 		3C5A26EE1EC16B520081591A /* UserHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A26ED1EC16B520081591A /* UserHeaderView.m */; };
 		3C5A26F11EC18D2B0081591A /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5A26F01EC18D2B0081591A /* UserModel.m */; };
-		3C5A26F31EC1B7B90081591A /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 3C5A26F21EC1B7B90081591A /* index.html */; };
 		3C6953DF1EC438A900C42E9C /* DataUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6953DE1EC438A900C42E9C /* DataUtil.m */; };
 		3C6953E21EC458E800C42E9C /* UIAlertController+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C6953E11EC458E800C42E9C /* UIAlertController+Blocks.m */; };
 		3C8074061EC00CAF00E3981C /* HRCollectionViewBindingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C8074051EC00CAF00E3981C /* HRCollectionViewBindingHelper.m */; };
@@ -126,6 +128,11 @@
 
 /* Begin PBXFileReference section */
 		34FC35B7AB106BF4509F0007 /* libPods-hrbp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-hrbp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C0CE7C21ECAE71D00B814DC /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		3C0CE7C41ECAFACA00B814DC /* RegionalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionalModel.h; sourceTree = "<group>"; };
+		3C0CE7C51ECAFACA00B814DC /* RegionalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionalModel.m; sourceTree = "<group>"; };
+		3C0CE7C71ECAFAEE00B814DC /* RegionalScopeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegionalScopeModel.h; sourceTree = "<group>"; };
+		3C0CE7C81ECAFAEE00B814DC /* RegionalScopeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionalScopeModel.m; sourceTree = "<group>"; };
 		3C1BDB5C1EBB1BF7003E712F /* hrbpPrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = hrbpPrefixHeader.pch; sourceTree = "<group>"; };
 		3C1BDB5D1EBB1D1A003E712F /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		3C1BDB601EBB1FA2003E712F /* UIBarButtonItem+HTBarButtonCustom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+HTBarButtonCustom.h"; sourceTree = "<group>"; };
@@ -261,7 +268,6 @@
 		3C5A26ED1EC16B520081591A /* UserHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserHeaderView.m; sourceTree = "<group>"; };
 		3C5A26EF1EC18D2B0081591A /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		3C5A26F01EC18D2B0081591A /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
-		3C5A26F21EC1B7B90081591A /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		3C6953DD1EC438A900C42E9C /* DataUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataUtil.h; sourceTree = "<group>"; };
 		3C6953DE1EC438A900C42E9C /* DataUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataUtil.m; sourceTree = "<group>"; };
 		3C6953E01EC458E800C42E9C /* UIAlertController+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIAlertController+Blocks.h"; path = "../UIAlertController+Blocks.h"; sourceTree = "<group>"; };
@@ -625,6 +631,10 @@
 			children = (
 				3C8365821EC2BE2C00BF059F /* LoginProtocolImpl.h */,
 				3C8365831EC2BE2C00BF059F /* LoginProtocolImpl.m */,
+				3C0CE7C41ECAFACA00B814DC /* RegionalModel.h */,
+				3C0CE7C51ECAFACA00B814DC /* RegionalModel.m */,
+				3C0CE7C71ECAFAEE00B814DC /* RegionalScopeModel.h */,
+				3C0CE7C81ECAFAEE00B814DC /* RegionalScopeModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -752,7 +762,7 @@
 				3CED050F1EBC107000D8F7D3 /* BaseViewController.m */,
 				3CED05111EBC109F00D8F7D3 /* BaseWebViewController.h */,
 				3CED05121EBC109F00D8F7D3 /* BaseWebViewController.m */,
-				3C5A26F21EC1B7B90081591A /* index.html */,
+				3C0CE7C21ECAE71D00B814DC /* index.html */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1104,7 +1114,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CF173F81EBB12F600EFBBFF /* Main.storyboard in Resources */,
-				3C5A26F31EC1B7B90081591A /* index.html in Resources */,
+				3C0CE7C31ECAE71D00B814DC /* index.html in Resources */,
 				3CF173F71EBB12F600EFBBFF /* LaunchScreen.storyboard in Resources */,
 				3CF173F61EBB12F600EFBBFF /* Assets.xcassets in Resources */,
 			);
@@ -1179,6 +1189,7 @@
 				3CED05291EBC138D00D8F7D3 /* HTTableView.m in Sources */,
 				3C1BDC251EBB2C35003E712F /* NSString+Trims.m in Sources */,
 				3CED05661EBC7A8500D8F7D3 /* HTBannerModel.m in Sources */,
+				3C0CE7C61ECAFACA00B814DC /* RegionalModel.m in Sources */,
 				3C1BDC0D1EBB2C35003E712F /* BAPickerView.m in Sources */,
 				3C1BDC091EBB2C35003E712F /* BAAlertView.m in Sources */,
 				3C8074131EC04B2A00E3981C /* HTMediatorAction+BaseWebViewController.m in Sources */,
@@ -1251,6 +1262,7 @@
 				3C8074191EC053EB00E3981C /* HRAboutUsViewModel.m in Sources */,
 				3CED05401EBC6CB700D8F7D3 /* HRHomeViewController.m in Sources */,
 				3C1BDC231EBB2C35003E712F /* NSString+BAKit.m in Sources */,
+				3C0CE7C91ECAFAEE00B814DC /* RegionalScopeModel.m in Sources */,
 				3C1BDB951EBB1FA2003E712F /* UIImageView+HTRoundImage.m in Sources */,
 				3CED05341EBC1B2900D8F7D3 /* HTWebViewModel.m in Sources */,
 				3C80740C1EC0192900E3981C /* itemCell.m in Sources */,
@@ -1340,7 +1352,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1382,7 +1394,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1398,6 +1410,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/hrbp/Application/hrbpPrefixHeader.pch";
 				INFOPLIST_FILE = hrbp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "----.hrbp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1413,6 +1426,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/hrbp/Application/hrbpPrefixHeader.pch";
 				INFOPLIST_FILE = hrbp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "----.hrbp";
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -7,6 +7,7 @@
 
 #import "LoginProtocolImpl.h"
 #import "UserModel.h"
+#import "RegionalModel.h"
 
 @interface LoginProtocolImpl ()
 
@@ -24,7 +25,7 @@
 
 @implementation LoginProtocolImpl
 
--(RACSignal *)requestLogionDataSignal:(NSString *)requestUrl params:(NSDictionary *)params{
+-(RACSignal *)requestLoginDataSignal:(NSString *)requestUrl params:(NSDictionary *)params{
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
@@ -51,6 +52,7 @@
         self.usermodel = [[UserModel alloc]init];
         self.usermodel.name  = @"张三";
         self.usermodel.position  = @"冠华大厦-移动互联网事业部";
+        self.usermodel.province  = @"北京";
         [subscriber sendNext:self.usermodel];
         [subscriber sendCompleted];
 
@@ -60,7 +62,7 @@
     }];
 }
 
-- (RACSignal *)requestLogionCodeDataSignal:(NSString *)requestUrl params:(NSDictionary *)params{
+- (RACSignal *)requestLoginCodeDataSignal:(NSString *)requestUrl params:(NSDictionary *)params{
     
     return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
         
@@ -87,6 +89,42 @@
         }];
     }];
 
+}
+
+- (RACSignal *)requestLoginAuthInfoDataSignal:(NSString *)requestUrl params:(NSDictionary *)params{
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+       
+//        HTURLSessionTask *task = [HTNetWorking getWithUrl:requestUrl refreshCache:YES showHUD:@"获取权限" params:params success:^(id response) {
+//        
+//            NSDictionary *responseDic = response;
+//            NSNumber* num_code=[DataUtil numberForKey:@"code" inDictionary:responseDic];
+//            NSInteger code=[num_code integerValue];
+//            if(code==200){
+//                NSArray *data = [DataUtil arrayForKey:@"data" inDictionary:responseDic];
+//                if (data.firstObject) {
+//                    RegionalModel *model = [RegionalModel mj_objectWithKeyValues:data.firstObject];
+//                }
+//            }
+//            
+//            
+//            [subscriber sendNext:response];
+//            [subscriber sendCompleted];
+//            
+//        } fail:^(NSError *error) {
+//            [subscriber sendError:error];
+//        }];
+        
+        //         --- 模拟加载延迟
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [subscriber sendNext:@1];
+            [subscriber sendCompleted];
+        });
+        
+        return [RACDisposable disposableWithBlock:^{
+//            [task cancel];
+        }];
+    }];
 }
 
 @end

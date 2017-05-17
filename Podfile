@@ -20,6 +20,9 @@ pod 'FMDB', '~> 2.6.2'
 pod 'SBJson', '~> 5.0.0'
 pod 'MBProgressHUD', '~> 1.0.0'
 pod 'FDFullscreenPopGesture', '~> 1.1'
+pod 'SDCycleScrollView', '~> 1.66'
+
+
 
 
 end

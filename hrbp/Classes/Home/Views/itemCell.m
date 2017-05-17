@@ -40,8 +40,8 @@
     return HT_LAZY(_nameLabel, ({
         
         UILabel *label = [UILabel new];
-        label.font = HTSetFont(@"DamascusLight", 16);
-        label.textColor = SetColor(80, 189, 203);
+        label.font = HTSetFont(@"DamascusLight", 15);
+        label.textColor = BA_Black_Color;
         label.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:label];
         label;

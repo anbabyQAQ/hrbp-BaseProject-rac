@@ -36,6 +36,19 @@ FOUNDATION_EXTERN NSString *const WebViewTypekey;
 FOUNDATION_EXTERN NSString *const DataIndex;
 
 
+
+/********** OC-navite交互 ***********/
+// oc-js 交互桥梁
+FOUNDATION_EXTERN NSString *const getDataFromNative;
+// 回调js方法名称
+FOUNDATION_EXTERN NSString *const callback;
+// 参数
+FOUNDATION_EXTERN NSString *const params;
+// url
+FOUNDATION_EXTERN NSString *const url;
+// 协议类型
+FOUNDATION_EXTERN NSString *const type;
+
 /********** 网络请求地址 ***********/
 
 // 服务地址
@@ -50,6 +63,8 @@ FOUNDATION_EXTERN NSString *const CityTravel_URL;
 
 // 登录
 FOUNDATION_EXTERN NSString *const Login_URL;
+// 用户权限
+FOUNDATION_EXTERN NSString *const Permission_URL;
 // 获取验证码
 FOUNDATION_EXTERN NSString *const VerifCode_URL;
 

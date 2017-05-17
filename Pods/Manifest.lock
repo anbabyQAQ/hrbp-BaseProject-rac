@@ -42,6 +42,8 @@ PODS:
   - RealReachability/Connection (1.1.8)
   - RealReachability/Ping (1.1.8)
   - SBJson (5.0.0)
+  - SDCycleScrollView (1.66):
+    - SDWebImage (~> 4.0.0)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -64,6 +66,7 @@ DEPENDENCIES:
   - ReactiveCocoa (= 2.5)
   - RealReachability
   - SBJson (~> 5.0.0)
+  - SDCycleScrollView (~> 1.66)
   - SDWebImage (= 4.0.0)
   - YYText (~> 1.0.7)
 
@@ -84,9 +87,10 @@ SPEC CHECKSUMS:
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   RealReachability: e6c8a2bbffa316006e8c282efc1ee2567d61a920
   SBJson: 73c848dc34be51fda282fab12bda6c426f5ead08
+  SDCycleScrollView: e3ade90e9b3159bec04330b208fbfd81c3f3b671
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 1094c4dd84b4f104febcb0b021ac31a95144e667
+PODFILE CHECKSUM: 49e457406d177d715e50f920736d3d4531f2b4cb
 
 COCOAPODS: 1.0.1

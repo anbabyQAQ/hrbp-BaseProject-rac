@@ -55,8 +55,6 @@
 /*！用户识别码：唯一 刷新token标识符 */
 @property (nonatomic, copy  ) NSString  *refreshToken; //token
 
-@property (nonatomic, assign) BOOL       isLogin;
-
 
 + (UserModel *)sharedUserModel;
 
