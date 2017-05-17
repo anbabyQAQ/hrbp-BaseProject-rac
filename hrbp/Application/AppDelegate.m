@@ -68,7 +68,7 @@
     
     /********* tabbar普通样式  ***********/
     self.tabBarControllerConfig = [[HTTabBarControllerConfig alloc] init];
-    
+//    self.window.rootViewController = self.tabBarControllerConfig.tabBarController;
 
     [self.window makeKeyAndVisible];
 }

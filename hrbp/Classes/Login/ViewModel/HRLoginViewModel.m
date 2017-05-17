@@ -39,14 +39,25 @@
         return @([usernameValid boolValue] && [passwordValid boolValue]);
     }];
     
+    self.permissionCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input)  {
+        @strongify(self);
+        NSDictionary *params = @{@"userAccountNum":self.username,@"authToken":@"4cdbc040-657a-4847-b266-7e31d9e2c3d9",@"apiKey":@"1c22a4dc-fce6-4b22-ae4a-3a0f3031bbcd"};
+        
+        return [[[self.services getLoginService] requestLoginAuthInfoDataSignal:Permission_URL params:params] doNext:^(id  _Nullable result) {
+            [self pushTabbarController];
+        }];
+    }];
 
     self.loginCommand = [[RACCommand alloc] initWithEnabled:self.loginEnableSignal signalBlock:^RACSignal * _Nonnull(id  _Nullable input)  {
         @strongify(self);
      
         NSDictionary *params = @{@"userAccountNum":self.username,@"verifCode":self.password,@"apiKey":@"1c22a4dc-fce6-4b22-ae4a-3a0f3031bbcd"};
-        return [[[self.services getLoginService] requestLogionDataSignal:Login_URL params:params] doNext:^(id  _Nullable result) {
-
-            [self pushTabbarController];
+        
+        return [[[self.services getLoginService] requestLoginDataSignal:Login_URL params:params] doNext:^(id  _Nullable result) {
+            self.userinfo = result;
+            if (result) {
+                [self.permissionCommand execute:@2];
+            }
         }];
     }];
     
@@ -54,7 +65,7 @@
         @strongify(self);
         
         NSDictionary *params = @{@"phoneNum":self.username,@"apiKey":@"1c22a4dc-fce6-4b22-ae4a-3a0f3031bbcd"};
-        return [[[self.services getLoginService] requestLogionCodeDataSignal:VerifCode_URL params:params] doNext:^(id _Nullable result) {
+        return [[[self.services getLoginService] requestLoginCodeDataSignal:VerifCode_URL params:params] doNext:^(id _Nullable result) {
             
             NSLog(@"%@",result);
             self.verifCode = result;

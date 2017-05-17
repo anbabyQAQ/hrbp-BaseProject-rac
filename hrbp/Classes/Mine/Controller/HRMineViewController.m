@@ -105,7 +105,7 @@
         
         HTTableView *tableView = [[HTTableView alloc] initWithFrame:self.view.bounds];
 //        tableView.tableHeaderView = self.headerView;
-        tableView.rowHeight = 58;
+        tableView.rowHeight = SCREEN_HEIGHT*0.08;
         tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
         [self.scrollView addSubview:tableView];
         tableView.tableHeaderView = self.headerView;

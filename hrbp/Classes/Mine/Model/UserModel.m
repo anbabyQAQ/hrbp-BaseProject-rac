@@ -46,6 +46,8 @@
     return [self sharedUserModel];
 }
 
-
++ (NSArray *)mj_ignoredCodingPropertyNames{
+    return @[@"authToken",@"refreshToken"];
+}
 
 @end

@@ -9,4 +9,57 @@
 
 @implementation WebViewProtocolImpl
 
+- (RACSignal *)requestNativeGetDataSignal:(NSString *)requestUrl params:(NSDictionary *)params{
+ 
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        HTURLSessionTask *task = [HTNetWorking getWithUrl:requestUrl refreshCache:YES showHUD:@"loading..." params:nil success:^(id response) {
+            
+            NSDictionary *responseDic = response;
+            NSNumber* num_code=[DataUtil numberForKey:@"code" inDictionary:responseDic];
+            NSInteger code=[num_code integerValue];
+            if(code==200){
+                NSArray *data = [DataUtil arrayForKey:@"data" inDictionary:responseDic];
+                
+            }
+            [subscriber sendNext:response];
+            [subscriber sendCompleted];
+            
+        } fail:^(NSError *error) {
+            [subscriber sendError:error];
+        }];
+     
+        return [RACDisposable disposableWithBlock:^{
+            [task cancel];
+        }];
+    }];
+}
+
+- (RACSignal *)requestNativePostDataSignal:(NSString *)requestUrl params:(NSDictionary *)params{
+    
+    return [RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+        
+        HTURLSessionTask *task = [HTNetWorking postWithUrl:requestUrl refreshCache:YES showHUD:@"loading..." params:params success:^(id response) {
+            
+            NSDictionary *responseDic = response;
+            NSNumber* num_code=[DataUtil numberForKey:@"code" inDictionary:responseDic];
+            NSInteger code=[num_code integerValue];
+            if(code==200){
+                NSArray *data = [DataUtil arrayForKey:@"data" inDictionary:responseDic];
+                
+            }
+            [subscriber sendNext:response];
+            [subscriber sendCompleted];
+            
+        } fail:^(NSError *error) {
+            [subscriber sendError:error];
+        }];
+        
+        return [RACDisposable disposableWithBlock:^{
+            [task cancel];
+        }];
+    }];
+}
+
+
 @end

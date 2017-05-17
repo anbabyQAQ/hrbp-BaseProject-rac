@@ -66,7 +66,7 @@
 }
 
 - (id<HTViewModelProtocolImpl>)getWebService{
-    return self.getWebService;
+    return self.wedService;
 }
 
 - (id<HTViewModelProtocolImpl>)getLoginService{

@@ -9,13 +9,14 @@
 #import "HTInfiniteCarouselView.h"
 #import "HRCollectionViewBindingHelper.h"
 #import "HRHomeViewModel.h"
+#import "SDCycleScrollView.h"
 
-@interface HRHomeViewController ()<UITableViewDelegate,UITextFieldDelegate>
+@interface HRHomeViewController ()<UITableViewDelegate,UITextFieldDelegate,SDCycleScrollViewDelegate>
 
 /**
  *  Banner
  */
-@property (strong, nonatomic) HTInfiniteCarouselView *bannerView;
+@property (strong, nonatomic) SDCycleScrollView *bannerView;
 /**
  *  轮播图
  */
@@ -41,7 +42,13 @@
 @implementation HRHomeViewController
 @dynamic viewModel;
 #pragma mark - Life Cycle
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // 如果你发现你的CycleScrollview会在viewWillAppear时图片卡在中间位置，调用此方法调整图片位置
+    [self.bannerView adjustWhenControllerViewWillAppera];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -56,8 +63,16 @@
 - (void)bindViewModel
 {
     [super bindViewModel];
-
+    
     self.bannerView.imageURLSignal = RACObserve(self.viewModel, bannerData);
+    
+    [[self
+      rac_signalForSelector:@selector(cycleScrollView:didSelectItemAtIndex:)
+      fromProtocol:@protocol(SDCycleScrollViewDelegate)]
+    	subscribeNext:^(RACTuple *tuple) {
+            NSNumber *index = tuple.second;
+            NSLog(@"---点击了第%d张图片", [index intValue]);
+        }];
     
     self.tripBindingHelper = [HRCollectionViewBindingHelper bindWithCollectionView:self.collectionView dataSource:RACObserve(self.viewModel, travelData) selectionCommand:self.viewModel.detailCommand templateCellClassName:@"itemCell"];
     
@@ -68,23 +83,22 @@
 {
     return HT_LAZY(_headerView, ({
         
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 180)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT*0.27)];
         [view addSubview:self.bannerView];
         [self.view addSubview:view];
         view;
     }));
 }
-- (HTInfiniteCarouselView *)bannerView
+- (SDCycleScrollView *)bannerView
 {
     return HT_LAZY(_bannerView, ({
         
-        HTInfiniteCarouselView *view = [[HTInfiniteCarouselView alloc] initWithFrame:CGRectMake(0, 10+64, SCREEN_WIDTH, 170)];
-        view.cornerRadius = 5;
-        view.autoScrollTimeInterval = 0.2;
-        view.placeholder = @"tripdisplay_photocell_placeholder";
-        [self.view addSubview:view];
-
-        view;
+        SDCycleScrollView *cycleScrollView = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT*0.27) delegate:self placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        cycleScrollView.currentPageDotImage = [UIImage imageNamed:@"pageControlCurrentDot"];
+        cycleScrollView.pageDotImage = [UIImage imageNamed:@"pageControlDot"];
+        [self.view addSubview:cycleScrollView];
+        
+        cycleScrollView;
     }));
 }
 
@@ -93,7 +107,7 @@
         
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
         // 定义大小
-        layout.itemSize = CGSizeMake(120, 120);
+        layout.itemSize = CGSizeMake(SCREEN_WIDTH*0.32, SCREEN_WIDTH*0.32);
         // 设置最小行间距
         layout.minimumLineSpacing = 20;
         // 设置垂直间距
@@ -101,9 +115,9 @@
         // 设置滚动方向（默认垂直滚动）
         //    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         // 设置边缘的间距，默认是{0，0，0，0}
-        layout.sectionInset = UIEdgeInsetsMake(40, 40, 40, 40);
+        layout.sectionInset = UIEdgeInsetsMake(20, 40, 40, 40);
         
-        UICollectionView *collectionview = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 10+64+170, SCREEN_WIDTH, SCREEN_HEIGHT - (10+64+170)) collectionViewLayout:layout];
+        UICollectionView *collectionview = [[UICollectionView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT*0.27+64, SCREEN_WIDTH, SCREEN_HEIGHT - (SCREEN_HEIGHT*0.27+64)) collectionViewLayout:layout];
         collectionview.backgroundColor = BA_White_Color;
         [self.view addSubview:collectionview];
         collectionview;

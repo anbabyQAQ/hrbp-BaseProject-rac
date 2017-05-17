@@ -10,21 +10,37 @@
 @protocol HTViewModelProtocolImpl <NSObject>
 
 @optional
+
 // 加载首页数据
 - (RACSignal *)requestHomeDataSignal:(NSString *)requestUrl;
 
+
+
+
+
+
 // 关于我们
 - (RACSignal *)requestMineAboutUsDataSignal:(NSString *)requestUrl;
-
 // 我的配置项
 - (RACSignal *)requestMineDataSignal:(NSString *)requestUrl;
 
 
 
 //登录
-- (RACSignal *)requestLogionDataSignal:(NSString *)requestUrl params:(NSDictionary *)params;
+- (RACSignal *)requestLoginDataSignal:(NSString *)requestUrl params:(NSDictionary *)params;
+//登录用户权限
+- (RACSignal *)requestLoginAuthInfoDataSignal:(NSString *)requestUrl params:(NSDictionary *)params;
 //获取登录验证码
-- (RACSignal *)requestLogionCodeDataSignal:(NSString *)requestUrl params:(NSDictionary *)params;
+- (RACSignal *)requestLoginCodeDataSignal:(NSString *)requestUrl params:(NSDictionary *)params;
+
+
+
+//native->get数据请求
+- (RACSignal *)requestNativeGetDataSignal:(NSString *)requestUrl params:(NSDictionary *)params;
+//native->post数据请求
+- (RACSignal *)requestNativePostDataSignal:(NSString *)requestUrl params:(NSDictionary *)params;
+
+
 
 
 @end

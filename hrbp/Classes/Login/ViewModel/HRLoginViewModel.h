@@ -6,6 +6,7 @@
  */
 
 #import "HTViewModel.h"
+#import "UserModel.h"
 
 @interface HRLoginViewModel : HTViewModel
 /**
@@ -28,6 +29,15 @@
  *  登录
  */
 @property (strong, nonatomic) RACCommand *loginCommand;
+/**
+ *  用户权限
+ */
+@property (strong, nonatomic) RACCommand *permissionCommand;
+
+/**
+ *  usermodel
+ */
+@property (strong, nonatomic) UserModel *userinfo;
 
 // property
 @property (nonatomic, copy) NSString *username;
